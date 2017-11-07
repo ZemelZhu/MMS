@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Home</title>
+<link href="./mms/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<link rel="Shortcut Icon" href="./mms/images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="./mms/js/jquery-easyui-1.4/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="./mms/js/jquery-easyui-1.4/themes/icon.css" />
+<script type="text/javascript" src="./mms/js/jquery-easyui-1.4/jquery.min.js"></script>
+<script type="text/javascript" src="./mms/js/jquery-easyui-1.4/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="./mms/js/jquery-easyui-1.4/locale/easyui-lang-zh_CN.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<div class="login">
+	<h2><font style="font-size: 35pt; filter: shadow(color=black); width: 71.27%;
+	color:#A9A9A9; line-height: 120%; font-family: 华文彩云; height: 150%">
+	医&nbsp;药&nbsp;管&nbsp;理&nbsp;信&nbsp;息&nbsp;系&nbsp;统 </font>
+	</h2>
+	<div class="login-top">
+		<h1>LOGIN</h1>
+			<input type="text"  id="username" placeholder="User Id">
+			<input type="text"  id="password" placeholder="password">
+	    <div class="forgot">
+	    	<input type="submit" value="Login" onclick="Login()">
+	    </div>
+	</div>
+	<div class="login-bottom">
+		
+	</div>
+</div>	
+<div class="copyright">
+	<p>made by Vimmone</p>
+</div>
+</body>
+<script type="text/javascript">
+	function Login() {
+		  if($("#username").val()=="") {
+		  	$.messager.alert('警告','User Id不能为空');
+		  	return;
+		  }
+		  if($("#password").val()=="") {
+		  	$.messager.alert('警告','password不能为空');
+		  	return;
+		  }
+		
+		
+		$.post('./Login/loginUser', {
+			username:$("#username").val(),
+			password:$("#password").val()
+		}, function(data) {
+			/*optional stuff to do after success */
+			if(data!="") $.messager.alert('警告',data);
+			else location.href = "./mms/index.html"; 
+		});
+	}
+</script>
+</html>

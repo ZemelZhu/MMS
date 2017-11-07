@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mms.mapper.ClientMapper">
+
+	<select id="queryClientBycno" parameterType="String" resultType="Client">
+		SELECT * FROM client WHERE cno = #{cno}
+	</select>
+	<update id="modifyClient"  parameterType="Client">
+		update client set 
+		cno = #{cno},cname=#{cname},
+		csex=#{csex},cage=#{cage},
+		caddress=#{caddress},
+		cphone=#{cphone},
+		csymptom=#{csymptom},
+		mno=#{mno},ano=#{ano},
+		cdate=#{cdate},
+		cremark=#{cremark}
+		WHERE cid = #{cid}
+	</update>
+	<delete id="deleteClientBycno" parameterType="String" >
+		DELETE FROM client  WHERE cno = #{cno}
+	</delete>
+	<select id="queryAllClient"  resultType="Client">
+		SELECT * FROM client 
+	</select>
+	<select id="saveClient" parameterType="Client" >
+		INSERT INTO client (
+		cno,cname,csex,cage,caddress,cphone,csymptom,
+		mno,ano,cdate,cremark)
+		VALUES(
+		#{cno},#{cname},#{csex},#{cage},#{caddress},
+		#{cphone},#{csymptom},#{mno},#{ano},#{cdate},
+		#{cremark})
+	</select>
+	
+	
+</mapper>

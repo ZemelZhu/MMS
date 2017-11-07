@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mms.mapper.UserMapper">
+	<insert id="addUser" parameterType="User">
+		insert into user(uUsername,uPassword,uAccess) VALUES 
+		(#{uUsername},#{uPassword},#{uAccess})
+	</insert>
+	<select id="queryAllUser"  resultType="User">
+		SELECT * FROM user 
+	</select>
+	<delete id="deleteUser" parameterType="String" >
+		DELETE FROM user  WHERE uUsername = #{uUsername}
+	</delete>
+	<update id="updateUser"  parameterType="User">
+		update user set uPassword=#{uPassword},
+		uAccess=#{uAccess} where uUsername=#{uUsername}
+	</update>
+	<select id="queryUserByName" parameterType="String" resultType="User">
+		SELECT * FROM user WHERE uUsername = #{uUsername}
+	</select>
+</mapper>

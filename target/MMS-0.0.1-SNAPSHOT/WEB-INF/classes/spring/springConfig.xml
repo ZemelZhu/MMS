@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- 注解驱动 -->
+	<mvc:annotation-driven />
+	
+	<!-- 定义Controller的扫描包 -->
+	<context:component-scan base-package="mms.controller" />
+
+	<!-- 定义视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="" />
+		<property name="suffix" value=".html" />
+	</bean>
+
+	<!-- 处理静态资源被“/”所拦截的问题 -->
+	<mvc:default-servlet-handler />
+	<!-- 定义拦截器 -->
+	<mvc:interceptors>
+		
+		<mvc:interceptor>
+			<!-- 所有的请求都进入 -->
+			
+			<mvc:mapping path="/**"/>
+			<!-- 不拦截登陆页面 -->
+			<mvc:exclude-mapping path="/login.html" />
+			<mvc:exclude-mapping path="/mms/css/*" />
+			<mvc:exclude-mapping path="/mms/js/**" />
+			<mvc:exclude-mapping path="/mms/images/*" />
+			<!-- 不拦截处理登陆的业务 -->
+			<mvc:exclude-mapping path="/Login/loginUser" />
+			
+			<bean class="mms.interceptors.MyHandlerInterceptor"/>
+		</mvc:interceptor>
+		
+	</mvc:interceptors>
+
+
+</beans>

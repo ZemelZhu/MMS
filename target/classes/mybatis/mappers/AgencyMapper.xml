@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mms.mapper.AgencyMapper">
+
+	<select id="queryAgencyByAno" parameterType="String" resultType="Agency">
+		SELECT * FROM agency WHERE ano = #{ano}
+	</select>
+	<delete id="deleteAgencyByAno" parameterType="String">
+		DELETE FROM agency WHERE ano = #{ano}
+	</delete>
+	<update id="modifyAgency" parameterType="Agency">
+		update agency set ano=#{ano},aname=#{aname},asex=#{asex},
+		aphone=#{aphone},aremark=#{aremark}
+		where aid=#{aid}
+	</update>
+	<insert id="saveAgency" parameterType="Agency">
+		insert into agency(ano,aname,asex,aphone,aremark) VALUES 
+		(#{ano},#{aname},#{asex},#{aphone},#{aremark})
+	</insert>
+	<select id="queryAllAgency" resultType="Agency">
+		SELECT * FROM agency 
+	</select>
+</mapper>

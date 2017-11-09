@@ -25,12 +25,19 @@ public class MedicineController {
 		return medicine;
 	}
 
-	// 通过mmno删除药品信息
+	// 通过mno删除药品信息
 	@RequestMapping(value = "DeleteMedicine", produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String deleteMedicineByMno(String mno) {
 		return medicineService.deleteMedicineByMno(mno);
 	}
+//	批量删除
+		@RequestMapping(value = "DeleteRows", produces = "text/html;charset=UTF-8")
+		@ResponseBody
+		public String deleteMedicineByRows(
+				@RequestParam(value = "array[]") String[] array) {
+			return medicineService.deleteMedicineByRows(array);
+		}
 
 	// 保存药品信息
 	@RequestMapping(value = "SaveMedicine", produces = "text/html;charset=UTF-8")

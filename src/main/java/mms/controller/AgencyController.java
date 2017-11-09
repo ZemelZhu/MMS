@@ -31,6 +31,13 @@ public class AgencyController {
 	public String deleteAgencyByAno(String ano) {
 		return agencyService.deleteAgencyByAno(ano);
 	}
+//	批量删除
+	@RequestMapping(value = "DeleteRows", produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String deleteAgencyByRows(
+			@RequestParam(value = "array[]") String[] array) {
+		return agencyService.deleteAgencyByRows(array);
+	}
 
 	// 修改经办人信息
 	@RequestMapping(value = "ModifyAgency", produces = "text/html;charset=UTF-8")

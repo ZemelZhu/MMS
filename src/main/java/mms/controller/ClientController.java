@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.mysql.fabric.xmlrpc.base.Array;
+
 import mms.pojo.Client;
 import mms.pojo.EasyUIResult;
 import mms.services.ClientService;
@@ -31,6 +34,15 @@ public class ClientController {
 	@ResponseBody
 	public void deleteClientBycno(String cno) {
 		clientService.deleteClientBycno(cno);
+	}
+//	批量删除
+	@RequestMapping(value = "DeleteRows", produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String deleteClientByRows(
+			@RequestParam(value = "array[]") String[] array) {
+		return clientService.deleteClientByRows(array);
+		
+//		clientService.deleteClientBycno(cno);
 	}
 
 	// 保存顾客信息

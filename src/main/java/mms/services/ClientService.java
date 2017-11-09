@@ -1,6 +1,7 @@
 package mms.services;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
@@ -27,6 +28,7 @@ public class ClientService {
 		if (queryClientBycno(client.getCno()) != null) {
 			return "客户编号已经存在，请重新输入编号";
 		}
+		System.out.println(client);
 		clientMapper.saveClient(client);
 		return "保存成功";
 
@@ -43,6 +45,7 @@ public class ClientService {
 	public void deleteClientBycno(String cno) {
 		// TODO Auto-generated method stub
 		clientMapper.deleteClientBycno(cno);
+		System.out.println(cno+"@@");
 	}
 
 	public String modifyClient(Client client) {
@@ -54,6 +57,20 @@ public class ClientService {
 		}
 		clientMapper.modifyClient(client);
 		return "修改成功";
+	}
+
+	public String deleteClientByRows(String[] array) {
+		// TODO Auto-generated method stub
+		try {
+			for (String cno : array) {
+				System.out.println(cno);
+				deleteClientBycno(cno);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "操作异常，请刷新后操作";
+		}
+		return "删除成功";
 	}
 
 }

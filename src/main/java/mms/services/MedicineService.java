@@ -2,6 +2,7 @@ package mms.services;
 
 import java.util.List;
 
+import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,6 +76,23 @@ public class MedicineService {
 		// TODO Auto-generated method stub
 		List<Medicine> queryAllMedicine = medicineMapper.queryAllMedicine();
 		return queryAllMedicine;
+	}
+
+	public String deleteMedicineByRows(String[] array) {
+		// TODO Auto-generated method stub
+		String exceptionMno = null;
+		try {
+			for (String mno : array) {
+				System.out.println(mno);
+				exceptionMno=mno;
+				medicineMapper.deleteMedicineByMno(mno);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "操作异常，可能是编号为<font size='4'>"+exceptionMno+"</font>的药品被顾客购买过，"
+					+ "无法删除此药品，请重新选择";
+		}
+		return "删除成功";
 	}
 
 }

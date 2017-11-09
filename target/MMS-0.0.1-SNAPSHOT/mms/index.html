@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>医药管理系统</title>
+<title>医药管理信息系统</title>
 <link rel="Shortcut Icon" href="./images/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="./js/jquery-easyui-1.4/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="./js/jquery-easyui-1.4/themes/icon.css" />
@@ -35,20 +35,21 @@
     
     > 
 <!-- 顶部   -->
-    <div id="north" style="background: #FFFFFF" 
+    <div id="north" style="background: #FFFFFF;
+    background-size:cover; 
+    background-image: url(./images/back.png)" 
     
     data-options="region:'north',split:true,border:false,
-        height:'11%',disabled:true">
-        <img style="margin-left: 10%" 
-        src="./images/title.png">
+        height:'13%',disabled:true">
+       
    
-<span style="margin-left:40%;font-size: 28px">
+<div style="margin-left: 80%; margin-top: 1%; font-size: 28px">
     <span id="loginName" ></span>&nbsp;
     <span style="font-size: 20px">
     <a href="javascript:logOff()">注销</a>&nbsp;|
     <a href="javascript:ModifyPassword()">修改密码</a>
     </span>
-</span>
+</div>
     
     </div> 
 <!-- 菜单 -->

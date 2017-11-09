@@ -46,7 +46,7 @@ public class AgencyService {
 			agencyMapper.deleteAgencyByAno(ano);
 		} catch (Exception e) {
 			// TODO: handle exception
-			return "删除失败，可能是有客户在此经办人购药，"
+			return "删除失败，此经办人为客户提供过服务，"
 			+ "无法删除此经办人";
 		}
 		return "删除成功";
@@ -74,6 +74,25 @@ public class AgencyService {
 		// TODO Auto-generated method stub
 		List<Agency> allAgency = agencyMapper.queryAllAgency();
 		return allAgency;
+	}
+
+	public String deleteAgencyByRows(String[] array) {
+		// TODO Auto-generated method stub
+		String exceptionAno = null;
+		try {
+			for (String ano : array) {
+				System.out.println(ano);
+				exceptionAno=ano;
+				agencyMapper.deleteAgencyByAno(ano);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "操作异常，可能是编号为<font size='4'>"
+					+exceptionAno+
+					"</font>的经办人处理过顾客信息,"
+			+ "无法删除此经办人，请重新选择";
+		}
+		return "删除成功";
 	}
 
 }

@@ -1,0 +1,33 @@
+#EclipseHTMLEditor configuration file
+#Wed Nov 08 22:03:07 GMT+08:00 2017
+javaScriptDeprecated=Off
+javaScriptIndentChar=\ 
+javaScriptCheckTypes=Off
+useDTD=true
+javaScriptCheckRegExp=Off
+validateJS=true
+javaScriptUnknownDefines=Off
+javaScriptStrictModuleDepCheck=Off
+javaScriptAccessControls=Off
+javaScriptFileoverviewTags=Off
+javaScriptCompleters=ECMA Script\nFireFox
+javaScriptInitIndentLevel=0
+javaScriptInvalidCasts=Off
+validateXML=true
+javaScriptVisibility=Off
+javaScriptNonStandardJsDocs=Off
+javaScripts=
+javaScriptBracesOnOwnLine=true
+removeMarkers=false
+javaScriptUndefinedVars=Off
+validateJSP=true
+javaScriptSpaceAfterAnonFunc=false
+validateHTML=true
+javaScriptPreserveNewlines=true
+root=/
+javaScriptUseUndefined=Off
+javaScriptMissingProperties=Off
+javaScriptIndentSize=4
+javaScriptLibPaths=
+validateDTD=true
+javaScriptCheckVars=Off

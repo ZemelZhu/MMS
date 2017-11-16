@@ -36,4 +36,9 @@ public class EasyUIResult {
 		this.rows = rows;
 	}
 
+	@Override
+	public String toString() {
+		return "EasyUIResult [total=" + total + ", rows=" + rows + "]";
+	}
+	
 }

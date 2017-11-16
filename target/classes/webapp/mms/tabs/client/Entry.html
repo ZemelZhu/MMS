@@ -1,5 +1,5 @@
 <!-- 录入顾客信息ECM -->
-   
+
 <div style="margin:10px 0px 0px 50px">
     <div  style="width:1600px;height:600px">
       <form id="ECMform" method="post" >  
@@ -9,16 +9,15 @@
               class="easyui-textbox"
               style="width: 200px;height:40px"
               data-options="prompt:'长度小于10'"></input>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;
               姓名:<input  name="cname"  id="eccname" 
               class="easyui-textbox"
               style="width: 200px;height:40px"
               data-options="prompt:'长度小于8'"></input>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;
               性别:<select  class="easyui-combobox" name="csex" 
               data-options="panelHeight:'auto'" 
-              style="width: 200px;height:40px">   
+              style="width: 40px;height:40px">   
                 <option value="男">男</option>   
                 <option value="女">女</option> 
               </select>  
@@ -28,27 +27,27 @@
               class="easyui-textbox"
               style="width: 200px;height:40px"
               data-options="prompt:'长度小于4'"></input>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;
               电话:<input  name="cphone" id="eccphone" 
               class="easyui-textbox" 
-              style="width: 300px;height:40px"
+              style="width: 200px;height:40px"
               data-options="prompt:'长度小于20'"></input>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;
               经办人:<input  name="ano" id="ecano" 
               class="easyui-combobox"
-              style="width: 200px;height:40px"
+              style="width: 150px;height:40px"
               data-options="url:'../Agency/GetAllAgency',
               valueField:'ano',textField:'ano',panelHeight:'auto'"></input>
             </div>
             <div style="margin-bottom: 20px">
                 录入日期:<input  name="cdate" id="eccdate" 
                 class="easyui-datebox"
-                style="width: 150px;height:40px"
+                style="width: 120px;height:40px"
                 data-options=""></input>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;
                 已购药品:<input  name="mno" id="ecmno" 
                 class="easyui-combobox" 
-                style="width: 350px;height:40px"
+                style="width: 200px;height:40px"
                 data-options="url:'../Medicine/GetAllMedicine',
                 valueField:'mno',textField:'mno',panelHeight:'auto'"></input>
             </div>
@@ -64,7 +63,7 @@
                 class="easyui-textbox" 
                 style="width: 500px;height:150px"
                 data-options="prompt:'长度小于50'" >
-                </input>&nbsp;&nbsp;&nbsp;&nbsp;
+                </input>&nbsp;
                 备注:<input  name="cremark" id="eccremark" 
                 multiline="true"
                 class="easyui-textbox" 
@@ -74,11 +73,12 @@
             </div>
           </div>
         </form>
+
     <a  href="javascript:ECMclickEntry()"
         class="easyui-linkbutton"
-        style="width: 300px;height: 100px,font-size:40px;
-        margin: 0px 0px 0px 500px" 
-        data-options="iconCls:'icon-user_add'"> 录入
+        style="width: 150px;height: 40px;
+            margin-left: 35%" 
+        data-options="iconCls:'icon-user_add'"><h1>录入</h1>
     </a>
   </div>
 </div>

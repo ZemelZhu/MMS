@@ -32,7 +32,7 @@
             class="easyui-textbox"
             style="width: 200px;height:40px"
             data-options=""></input>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;
             服用方法:<select  class="easyui-combobox" name="mmode"  id="mmmmode" 
             data-options="panelHeight:'auto'"
             style="width: 200px;height:40px">   
@@ -58,8 +58,47 @@
       <a  href="javascript:MMMclickModify()"
         class="easyui-linkbutton" 
         data-options="text:'asd',iconCls:'icon-user' "
-        style="width: 200px;height: 30px;font-size: 8pt;
-        margin: 0px 0px 0px 200px" >修改
+         style="width: 150px;height: 40px;
+            margin-left: 35%" ><h1>修改</h1>
       </a>       
     </div>
 </div>
+<script type="text/javascript">
+  function MMMIdclick() {
+
+  $.post("../Medicine/GetMedicine", {
+    mno: $('#MMMId').textbox('getValue')
+  }, function(data) {
+    if (data == ''){
+      $.messager.alert('警告', '药品编号无效');
+      return ;
+    }
+    $('#MMMdialog').dialog('open');
+    $("#mmmid").val(data.mid);
+    $("#mmmno").textbox('setValue', data.mno);
+    $("#mmmno").textbox('textbox').css("font-size", "18pt");
+    $("#mmmmode").combobox('setValue', data.mmode);
+    $("#mmmmode").textbox('textbox').css("font-size", "18pt");
+    $("#mmmname").textbox('setValue', data.mname);
+    $("#mmmname").textbox('textbox').css("font-size", "18pt");
+    $("#mmmefficacy").textbox('setValue', data.mefficacy);
+    $("#mmmefficacy").textbox('textbox').css("font-size", "18pt");
+  });
+}
+function MMMclickModify(){
+  $('#MMMform').form({    
+    url:'../Medicine/ModifyMedicine',    
+    onSubmit: function(){    
+        // do some check    
+        // return false to prevent submit;    
+    },    
+    success:function(data){    
+        $.messager.alert('提示', data); 
+        $('#MMMdialog').dialog('close'); 
+    }    
+});    
+// submit the form    
+$('#MMMform').submit();  
+   
+}
+</script>

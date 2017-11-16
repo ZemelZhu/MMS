@@ -18,6 +18,7 @@
     </div>
   </div>
 </div>
+
 <!-- 查询结束 -->
 
 <!-- 隐藏页面 -->
@@ -27,29 +28,29 @@ data-options="iconCls:'icon-group',modal:true,draggable:false"
 style="width:1000px;height:600px;">
   <!-- 经办人信息 -->
     <div style="margin:50px 0px 0px 100px;font-size: 40px">
-      <div style="margin-bottom: 20px">
+      <div style="margin-bottom: 30px">
         编号:<input id="SAMano"
         class="easyui-textbox"
         style="width: 200px;height:40px"
         data-options="disabled:true"></input>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;
         姓名:<input id="SAManame"
         class="easyui-textbox"
         style="width: 200px;height:40px"
         data-options="disabled:true"></input>
       </div>
-      <div style="margin-bottom: 20px">
+      <div style="margin-bottom: 30px">
         性别:<input id="SAMasex"
         class="easyui-textbox" style="width: 40px;height:40px"
         data-options="disabled:true"></input>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
         电话:<input id="SAMaphone"
         class="easyui-textbox" 
         style="width: 200px;height:40px"
         data-options="disabled:true"></input></td>
       </div>
-      <div style="margin-bottom: 20px;">
+      <div style="margin-bottom: 30px;">
         备注:<input 
         id="SAMaremark" multiline="true"
         class="easyui-textbox" 
@@ -60,3 +61,26 @@ style="width:1000px;height:600px;">
 </div>
 <!-- 测试完成页面 -->
 
+<script type="text/javascript">
+  function SAMIdclick() {
+  $.post("../Agency/GetAgency", {
+    ano: $('#SAMId').textbox('getValue')
+  }, function(data) {
+    if (data == ''){
+      $.messager.alert('警告', '编号无效');
+      return ;
+    }
+    $('#SAMdialog').dialog('open');
+    $("#SAMano").textbox('setValue', data.ano);
+    $("#SAMano").textbox('textbox').css("font-size", "18pt");
+    $("#SAManame").textbox('setValue', data.aname);
+    $("#SAManame").textbox('textbox').css("font-size", "18pt");
+    $("#SAMasex").textbox('setValue', data.asex);
+    $("#SAMasex").textbox('textbox').css("font-size", "18pt");
+    $("#SAMaphone").textbox('setValue', data.aphone);
+    $("#SAMaphone").textbox('textbox').css("font-size", "18pt");
+    $("#SAMaremark").textbox('setValue', data.aremark);
+    $("#SAMaremark").textbox('textbox').css("font-size", "18pt");
+  });
+}
+</script>

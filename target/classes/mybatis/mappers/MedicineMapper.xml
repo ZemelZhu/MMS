@@ -7,6 +7,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryMedicineByMno" parameterType="String" resultType="Medicine">
 		SELECT * FROM medicine WHERE mno = #{mno}
 	</select>
+	<select id="queryMultiMedicine"  parameterType="Medicine" resultType="Medicine">
+		SELECT * FROM medicine WHERE 1=1
+		<if test="mefficacy!=''">
+          and mefficacy = #{mefficacy} 
+        </if>
+        <if test="mname!=''">
+          and mname  = #{mname} 
+		</if>
+		<if test="mmode!=''">
+          and mmode = #{mmode} 
+        </if>
+        
+	</select>
 	<update id="modifyMedicine"  parameterType="Medicine">
 		update medicine set mno=#{mno},mname=#{mname},mmode=#{mmode},
 		mefficacy=#{mefficacy} where mid=#{mid}

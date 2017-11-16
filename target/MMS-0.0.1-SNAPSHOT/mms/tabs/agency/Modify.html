@@ -31,32 +31,31 @@
       style="margin:50px 0px 0px 100px;font-size: 40px">
       <form id="MAMform" method="post">
         <input type="hidden" name="aid" id="maaid">
-        <div style="margin-bottom: 20px">
+        <div style="margin-bottom: 30px">
           编号:<input  name="ano" id="maano" 
           class="easyui-textbox"
           style="width: 200px;height:40px"
           data-options=""></input>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;
           姓名:<input  name="aname" id="maaname" 
           class="easyui-textbox"
           style="width: 200px;height:40px"
           data-options=""></input>
         </div>
-        <div style="margin-bottom: 20px">
+        <div style="margin-bottom: 30px">
          性别:<select  class="easyui-combobox" name="asex" id="maasex" 
          data-options="panelHeight:'auto'" 
          style="width: 50px;height:40px">   
          <option value="男">男</option>   
          <option value="女">女</option> 
           </select>  
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           电话:<input  name="aphone" id="maaphone" 
           class="easyui-textbox" 
           style="width: 200px;height:40px"
           data-options=""></input></td>
         </div>
-         <div style="margin-bottom: 20px;">
+         <div style="margin-bottom: 30px;">
           备注:<input  name="aremark" id="maaremark"
           multiline="true"
           class="easyui-textbox" 
@@ -68,12 +67,70 @@
       </form>
     <a  href="javascript:MAMclickDelete()"
         class="easyui-linkbutton" 
-        data-options="text:'asd',iconCls:'icon-user' "
-        style="width: 200px;height: 30px;font-size: 8pt;
-        margin: 0px 0px 0px 250px
-        " >修改
+        data-options="iconCls:'icon-user' "
+         style="width: 150px;height: 40px;
+            margin-left: 35%"  ><h1>修改</h1>
     </a>    
   </div>
 </div>
 <!-- 测试完成 -->
 
+<script type="text/javascript">
+function MAMIdclick() {
+  
+  $.post("../Agency/GetAgency", {
+    ano: $('#MAMId').textbox('getValue')
+  }, function(data) {
+    if (data == ''){
+      $.messager.alert('警告', '顾客编号无效');
+      return ;
+    }
+    $('#MAMdialog').dialog('open');
+    $("#maaid").val(data.aid);
+    $("#maano").textbox('setValue', data.ano);
+    $("#maano").textbox('textbox').css("font-size", "18pt");
+    $("#maaname").textbox('setValue', data.aname);
+    $("#maaname").textbox('textbox').css("font-size", "18pt");
+    $("#maasex").combobox('setValue', data.asex);
+    $("#maasex").combobox('textbox').css("font-size", "18pt");
+    $("#maaphone").textbox('setValue', data.aphone);
+    $("#maaphone").textbox('textbox').css("font-size", "18pt");
+    $("#maaremark").textbox('setValue', data.aremark);
+    $("#maaremark").textbox('textbox').css("font-size", "18pt");
+  });
+}
+function MAMclickDelete(){
+    if($("#maano").val().length>8||$("#maano").val().length==0) {
+        $.messager.alert('提示', '编号不能长度大于8且不为空'); 
+        return ;
+    }
+    if($("#maaname").val().length>8) {
+        $.messager.alert('提示', '姓名不能长度大于8'); 
+        return ;
+    }
+    if($("#maaphone").val().length>12) {
+        $.messager.alert('提示', '电话不能长度大于12'); 
+        return ;
+    }
+   
+     if($("#maaremark").val().length>50) {
+        $.messager.alert('提示', '备注不能长度大于50'); 
+        return ;
+    }
+  $('#MAMform').form({    
+    url:'../Agency/ModifyAgency',    
+    onSubmit: function(){    
+        // do some check    
+        // return false to prevent submit;    
+    },    
+    success:function(data){    
+        $.messager.alert('提示', data); 
+        $('#MAMdialog').dialog('close'); 
+    }    
+});    
+// submit the form    
+$('#MAMform').submit();  
+
+   
+}
+</script>

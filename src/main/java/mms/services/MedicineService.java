@@ -2,6 +2,8 @@ package mms.services;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +35,8 @@ public class MedicineService {
 		PageInfo<Medicine> pageInfo = new PageInfo<Medicine>(medicines);
 		return new EasyUIResult(pageInfo.getTotal(), medicines);
 	}
-
+	
+	
 	public String saveMedicine(Medicine medicine) {
 		// TODO Auto-generated method stub
 		if (queryMedicineByMno(medicine.getMno()) != null) {
@@ -95,4 +98,30 @@ public class MedicineService {
 		return "删除成功";
 	}
 
+	public String queryMultiMedicine(Medicine medicine, HttpSession session) {
+		// TODO Auto-generated method stub
+		try {
+			List<Medicine> medicines = medicineMapper.queryMultiMedicine(medicine);
+			session.setAttribute("medicines", medicines);
+			System.out.println(medicines);
+			System.out.println("@@@@@");
+			return "";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "操作异常，请刷新后操作";
+		}
+		
+		
+//		System.out.println(medicine);
+//		 List<Medicine> medicine1 = (List<Medicine>) medicineMapper.queryMultiMedicine(medicine);
+//		System.out.println(medicine1);
+	}
+	public EasyUIResult getMultiMedicine(Integer page, Integer rows, HttpSession session) {
+		// TODO Auto-generated method stub
+		PageHelper.startPage(page, rows);
+		List<Medicine> medicines = (List<Medicine>) session.getAttribute("medicines");
+		System.out.println(medicines);
+		PageInfo<Medicine> pageInfo = new PageInfo<Medicine>(medicines);
+		return new EasyUIResult(pageInfo.getTotal(), medicines);
+	}
 }

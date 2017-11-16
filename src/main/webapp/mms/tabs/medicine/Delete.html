@@ -6,7 +6,7 @@ data-options="striped:true,
 height:'auto',  
 singleSelect: false,
 selectOnCheck: true,//true勾选会选择行，false勾选不选择行, 1.3以后有此选项。重点在这里  
-checkOnSelect: true, //true选择行勾选，false选择行不勾选, 1.3以后有此选项      
+checkOnSelect: true, //true选择行勾选，false选择行不勾选, 1.3以后有此选项 
 rownumbers:true,
 remoteSort: false,
 pagination:true,fitColumns:true,
@@ -31,28 +31,28 @@ style="width: 87%">
 </table>
 </div>
 <div id="medicineDelete">
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-pill_delete" plain="true" 
+    <a href="javascript:void(0)" class="easyui-linkbutton"
+    iconCls="icon-pill_delete" plain="true"
     onclick="DMMDelte()">删除药品</a>
+</div>
     <script type="text/javascript">
       function DMMDelte(){
         var deleteRow = $('#DMMDatagrid').datagrid('getSelections');
-        if (deleteRow.length==0) {  
-            $.messager.alert("提示", "请选择要删除的行！");  
-            return;  
-        }else{   
-            var ids=[];    
+        if (deleteRow.length==0) {
+            $.messager.alert("提示", "请选择要删除的行！");
+            return;
+        }else{
+            var ids=[];
             for (var i = 0; i < deleteRow.length; i++) {
              ids.push(deleteRow[i].mno);
-         } 
+         }
          $.post('../Medicine/DeleteRows', {"array[]":ids
      }, function(data) {
       /*optional stuff to do after success */
-      $.messager.alert("提示", data);  
-      $('#DMMDatagrid').datagrid('reload');  
+      $.messager.alert("提示", data);
+      $('#DMMDatagrid').datagrid('reload');
   });
-         
      }
-     
  }
 </script>
 

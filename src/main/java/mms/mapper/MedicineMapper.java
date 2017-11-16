@@ -14,4 +14,6 @@ public interface MedicineMapper {
 	public void deleteMedicineByMno(String mno);
 
 	public void modifyMedicine(Medicine medicine);
+
+	public List<Medicine> queryMultiMedicine(Medicine medicine);
 }

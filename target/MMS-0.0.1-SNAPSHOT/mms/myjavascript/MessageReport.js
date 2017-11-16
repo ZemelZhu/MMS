@@ -20,15 +20,7 @@ function RCMclick(){
 		$('#output').tabs('select', '顾客数据报表');
 		}
 }
-// 打印部分
-function RCMPrint(){
-	$('#RCMPrint').jqprint();
-}
-// 打印全部
-// function RCMAllPrint(){
-// 	$('#RCMPAllrint').show();
-// 	$('#RCMPAllrint').jqprint();
-// }
+
 // 浏览顾客信息end
 // 浏览经办人信息begin
 function RAMclick(){
@@ -50,9 +42,7 @@ function RAMclick(){
 		$('#output').tabs('select', '经办人数据报表');
 		}
 }
-function RAMPrint(){
-	$('#RAMPrint').jqprint();
-}
+
 // 浏览经办人信息end
 // 浏览药品信息begin
 function RMMclick(){
@@ -74,8 +64,6 @@ function RMMclick(){
 		$('#output').tabs('select', '药品数据报表');
 		}
 }
-function RMMPrint(){
-	$('#RMMPrint').jqprint();
-}
+
 // 浏览药品信息end
 // 信息浏览end

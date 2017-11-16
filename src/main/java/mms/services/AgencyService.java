@@ -33,11 +33,17 @@ public class AgencyService {
 
 	public String saveAgency(Agency agency) {
 		// TODO Auto-generated method stub
-		if (queryAgencyByAno(agency.getAno()) != null) {
-			return "经办人编号已经存在，请重新输入编号";
+		try {
+			if (queryAgencyByAno(agency.getAno()) != null) {
+				return "经办人编号已经存在，请重新输入编号";
+			}
+			agencyMapper.saveAgency(agency);
+			return "保存成功";
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "操作异常，请刷新后操作";
 		}
-		agencyMapper.saveAgency(agency);
-		return "保存成功";
 	}
 
 	public String deleteAgencyByAno(String ano) {
@@ -46,8 +52,7 @@ public class AgencyService {
 			agencyMapper.deleteAgencyByAno(ano);
 		} catch (Exception e) {
 			// TODO: handle exception
-			return "删除失败，此经办人为客户提供过服务，"
-			+ "无法删除此经办人";
+			return "删除失败，此经办人为客户提供过服务，" + "无法删除此经办人";
 		}
 		return "删除成功";
 	}
@@ -63,10 +68,9 @@ public class AgencyService {
 			agencyMapper.modifyAgency(agency);
 		} catch (Exception e) {
 			// TODO: handle exception
-			return "修改失败，可能是有客户在此经办人购药，"
-					+ "无法修改编号";
+			return "修改失败，可能是有客户在此经办人购药，" + "无法修改编号";
 		}
-//		agencyMapper.modifyAgency(agency);
+		// agencyMapper.modifyAgency(agency);
 		return "修改成功";
 	}
 
@@ -82,15 +86,12 @@ public class AgencyService {
 		try {
 			for (String ano : array) {
 				System.out.println(ano);
-				exceptionAno=ano;
+				exceptionAno = ano;
 				agencyMapper.deleteAgencyByAno(ano);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			return "操作异常，可能是编号为<font size='4'>"
-					+exceptionAno+
-					"</font>的经办人处理过顾客信息,"
-			+ "无法删除此经办人，请重新选择";
+			return "操作异常，可能是编号为<font size='4'>" + exceptionAno + "</font>的经办人处理过顾客信息," + "无法删除此经办人，请重新选择";
 		}
 		return "删除成功";
 	}

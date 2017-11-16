@@ -25,12 +25,18 @@ public class ClientService {
 
 	public String saveClient(Client client) {
 		// TODO Auto-generated method stub
-		if (queryClientBycno(client.getCno()) != null) {
-			return "客户编号已经存在，请重新输入编号";
+		try {
+			if (queryClientBycno(client.getCno()) != null) {
+				return "客户编号已经存在，请重新输入编号";
+			}
+			System.out.println(client);
+			clientMapper.saveClient(client);
+			return "保存成功";
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "操作异常，请重新操作";
 		}
-		System.out.println(client);
-		clientMapper.saveClient(client);
-		return "保存成功";
 
 	}
 
@@ -45,7 +51,6 @@ public class ClientService {
 	public void deleteClientBycno(String cno) {
 		// TODO Auto-generated method stub
 		clientMapper.deleteClientBycno(cno);
-		System.out.println(cno+"@@");
 	}
 
 	public String modifyClient(Client client) {

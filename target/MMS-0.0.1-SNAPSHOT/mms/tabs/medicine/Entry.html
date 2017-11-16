@@ -11,10 +11,10 @@
                     class="easyui-textbox"
                     style="width: 200px;height:40px"
                     data-options=""></input>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;
                     服用方法:<select  class="easyui-combobox" name="mmode"  id="emmmode" 
                     data-options="panelHeight:'auto'"
-                    style="width: 200px;height:40px">   
+                    style="width: 60px;height:40px">   
                       <option value="内服">内服</option>   
                       <option value="外用">外用</option> 
                     </select>  
@@ -37,11 +37,41 @@
             </form>
         <a  href="javascript:EMMclickEntry()"
             class="easyui-linkbutton"
-            style="width: 300px;height: 20px;font-size: 10pt;
-            margin: 0px 0px 0px 200px" 
-            data-options="iconCls:'icon-pill_add'">录入
+            style="width: 150px;height: 40px;
+            margin-left: 35%" 
+            data-options="iconCls:'icon-pill_add'"><h1>录入</h1>
         </a>
         </div>
     </div>
 </div>
 <!-- 测试完成 -->
+<script type="text/javascript">
+     function EMMclickEntry() {
+    if($("#emmno").val().length>12||$("#emmno").val().length==0) {
+        $.messager.alert('提示', '编号不能长度大于12且不为空'); 
+        return ;
+    }
+    if($("#emmname").val().length>50) {
+        $.messager.alert('提示', '名称不能长度大于50'); 
+        return ;
+    }
+    
+    if($("#emmefficacy").val().length>50) {
+        $.messager.alert('提示', '功效不能长度大于50'); 
+        return ;
+    }
+    
+    $('#EMMform').form({    
+    url:'../Medicine/SaveMedicine',    
+    onSubmit: function(){    
+        // do some check    
+        // return false to prevent submit;    
+    },    
+    success:function(data){    
+        $.messager.alert('提示', data); 
+    }    
+});    
+// submit the form    
+$('#EMMform').submit();  
+}
+</script>

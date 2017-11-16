@@ -6,7 +6,7 @@
          pagination:true,fitColumns:true,
          url:'../Client/GetMessage',pageSize:5,
          pageList:[2,5,10]"
-         style="width: 89%">
+         style="width: 88%">
       <thead>
           <tr>
            <th data-options="field:'cno'" width=7%>
@@ -40,3 +40,14 @@
         onclick="RCMPrint()">打印部分信息</a>
      
 </div>
+<script type="text/javascript">
+    // 打印部分
+function RCMPrint(){
+    $('#RCMPrint').jqprint();
+}
+// 打印全部
+// function RCMAllPrint(){
+//  $('#RCMPAllrint').show();
+//  $('#RCMPAllrint').jqprint();
+// }
+</script>

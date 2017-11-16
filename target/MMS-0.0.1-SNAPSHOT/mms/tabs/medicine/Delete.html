@@ -1,62 +1,58 @@
-<!-- 药品信息删除DMM -->
-<div  style="margin: 2% 0px 0px 30%">
-    <div class="easyui-panel" title="药品编号查询" 
-        data-options="iconCls:'icon-pill'"
-        style="max-width:400px;padding:30px 60px;">
-        <div style="margin-bottom:20px">
-            <input id="DMMId" class="easyui-textbox" 
-            labelPosition="top" 
-            data-options="prompt:'请输入药品编号...'" 
-            style="width:100%;height:32px">
-        </div>
-        <div>
-            <a href="javascript:DMMIdclick()" class="easyui-linkbutton" 
-            iconCls="icon-ok" style="width:100%">查询</a>
-        </div>
-    </div>
-</div>
-<!-- 查询结束 -->
+<!-- /* 删除药品信息*/ -->
 
-<!-- 隐藏页面 -->
-<!-- 隐藏对话框 -->
-<div class="easyui-dialog" title="药品信息" closed="true" id="DMMdialog"
-    data-options="iconCls:'icon-pill',modal:true,draggable:false"
-    style="width:1000px;height:600px;">
-    <div 
-        style="margin:50px 0px 0px 100px;
-        font-size: 40px">
-        <div style="margin-bottom: 30px">
-            编号:<input id="DMMmno"
-            class="easyui-textbox"
-            style="width: 200px;height:40px"
-            data-options="disabled:true"></input>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            服用方法:<input id="DMMmmode"
-            class="easyui-textbox"
-            style="width: 200px;height:40px"
-            data-options="disabled:true"></input>
-        </div>
-        <div style="margin-bottom: 30px">
-            名称:<input 
-            id="DMMmname" multiline="true"
-            class="easyui-textbox" 
-            style="width: 500px;height:150px"
-            data-options="disabled:true" ></input>
-        </div>
-        <div style="margin-bottom: 30px;">
-            功效:<input 
-            id="DMMmefficacy" multiline="true"
-            class="easyui-textbox" 
-            style="width: 500px;height:150px"
-            data-options="disabled:true" ></input>
-        </div>
-        <a  href="javascript:DMMclickDelete()"
-            class="easyui-linkbutton" 
-             data-options="text:'asd',iconCls:'icon-user' "
-            style="width: 200px;height: 30px;font-size: 8pt;
-            margin: 0px 0px 0px 200px
-            " >删除
-        </a>       
-    </div>
+<table id="DMMDatagrid" class="easyui-datagrid" toolbar="#medicineDelete"
+title="药品信息报表" 
+data-options="striped:true,
+height:'auto',  
+singleSelect: false,
+selectOnCheck: true,//true勾选会选择行，false勾选不选择行, 1.3以后有此选项。重点在这里  
+checkOnSelect: true, //true选择行勾选，false选择行不勾选, 1.3以后有此选项 
+rownumbers:true,
+remoteSort: false,
+pagination:true,fitColumns:true,
+url:'../Medicine/GetMessage',pageSize:5,
+pageList:[2,5,10]"
+style="width: 87%">
+
+<thead>
+  <tr>
+    <th data-options="field:'GenreId',checkbox: true" width=2%>
+    </th>
+    <th data-options="field:'mno'" width=12%>
+    编号</th>
+    <th data-options="field:'mname'" width=43%>
+    名称</th>
+    <th data-options="field:'mmode'" swidth=2%>
+    服用方法</th>
+    <th data-options="field:'mefficacy'" width=38%>
+    功效</th>
+</tr>
+</thead>
+</table>
 </div>
-<!-- 测试完成 -->
+<div id="medicineDelete">
+    <a href="javascript:void(0)" class="easyui-linkbutton"
+    iconCls="icon-pill_delete" plain="true"
+    onclick="DMMDelte()">删除药品</a>
+</div>
+    <script type="text/javascript">
+      function DMMDelte(){
+        var deleteRow = $('#DMMDatagrid').datagrid('getSelections');
+        if (deleteRow.length==0) {
+            $.messager.alert("提示", "请选择要删除的行！");
+            return;
+        }else{
+            var ids=[];
+            for (var i = 0; i < deleteRow.length; i++) {
+             ids.push(deleteRow[i].mno);
+         }
+         $.post('../Medicine/DeleteRows', {"array[]":ids
+     }, function(data) {
+      /*optional stuff to do after success */
+      $.messager.alert("提示", data);
+      $('#DMMDatagrid').datagrid('reload');
+  });
+     }
+ }
+</script>
+

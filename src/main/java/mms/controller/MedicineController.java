@@ -1,6 +1,9 @@
 package mms.controller;
 
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,19 +21,34 @@ public class MedicineController {
 	private MedicineService medicineService;
 
 	// 通过mno查询药品信息
-	@RequestMapping("GetMedicine")
+	@RequestMapping("QueryMedicineByMno")
 	@ResponseBody
 	public Medicine queryMedicineByMno(String mno) {
 		Medicine medicine = medicineService.queryMedicineByMno(mno);
 		return medicine;
 	}
-
-	// 通过mno删除药品信息
+/*	// 多条件药品信息保存session
+		@RequestMapping("QueryMultiMedicine")
+		@ResponseBody
+		public String queryMultiMedicine(Medicine medicine,HttpSession session) {
+			return medicineService.queryMultiMedicine(medicine,session);
+			
+		}
+//	多条件药品查询url
+		@RequestMapping("GetMultiMedicine")
+		@ResponseBody
+		public EasyUIResult getMultiMedicine(@RequestParam(value = "page", defaultValue = "1") Integer page,
+				@RequestParam(value = "rows", defaultValue = "5") Integer rows,
+				HttpSession session) {
+			return medicineService.getMultiMedicine(page, rows,session);
+			
+		}*/
+/*	// 通过mno删除药品信息
 	@RequestMapping(value = "DeleteMedicine", produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String deleteMedicineByMno(String mno) {
 		return medicineService.deleteMedicineByMno(mno);
-	}
+	}*/
 //	批量删除
 		@RequestMapping(value = "DeleteRows", produces = "text/html;charset=UTF-8")
 		@ResponseBody
@@ -59,6 +77,7 @@ public class MedicineController {
 	public EasyUIResult queryAllMedicine(@RequestParam(value = "page", defaultValue = "1") Integer page,
 			@RequestParam(value = "rows", defaultValue = "5") Integer rows) {
 		return medicineService.queryAllMedicine(page, rows);
+		
 	}
 
 	// 获得药品信息

@@ -36,20 +36,20 @@
               经办人:<input  name="ano" id="ecano" 
               class="easyui-combobox"
               style="width: 150px;height:40px"
-              data-options="url:'../Agency/GetAllAgency',
-              valueField:'ano',textField:'ano',panelHeight:'auto'"></input>
+              data-options="url:'../Agency/GetAllAgency',prompt:'必填',
+              valueField:'ano',textField:'ano',panelHeight:'300px'"></input>
             </div>
             <div style="margin-bottom: 20px">
                 录入日期:<input  name="cdate" id="eccdate" 
                 class="easyui-datebox"
                 style="width: 120px;height:40px"
-                data-options=""></input>
+                data-options="prompt:'必填'"></input>
                 &nbsp;&nbsp;
                 已购药品:<input  name="mno" id="ecmno" 
                 class="easyui-combobox" 
                 style="width: 200px;height:40px"
-                data-options="url:'../Medicine/GetAllMedicine',
-                valueField:'mno',textField:'mno',panelHeight:'auto'"></input>
+                data-options="url:'../Medicine/GetAllMedicine',prompt:'必填',
+                valueField:'mno',textField:'mno',panelHeight:'300px'"></input>
             </div>
             <div style="margin-bottom: 30px">
                住址:<input  name="caddress" id="eccaddress" 
@@ -103,6 +103,23 @@
         $.messager.alert('提示', '年龄不能长度大于4'); 
         return ;
     }
+    
+    if($("#eccdate").combo("getText").length==0) {
+    	// alert($("#eccdate").combo("getText"));
+        $.messager.alert('提示', '日期不能为空'); 
+        return ;
+    }
+    if($("#ecano").combobox("getText").length==0) {
+    	// alert($("#eccdate").combo("getText"));
+        $.messager.alert('提示', '经办人不能为空'); 
+        return ;
+    }
+    if($("#ecmno").combobox("getText").length==0) {
+    	// alert($("#eccdate").combo("getText"));
+        $.messager.alert('提示', '已购药品不能为空'); 
+        return ;
+    }
+    
     if($("#eccaddress").val().length>50) {
         $.messager.alert('提示', '地址不能长度大于50'); 
         return ;

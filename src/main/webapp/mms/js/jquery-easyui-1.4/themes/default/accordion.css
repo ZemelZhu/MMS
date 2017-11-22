@@ -26,28 +26,28 @@
   background: url('images/accordion_arrows.png') no-repeat -16px 0;
 }
 .accordion {
-  background: #fafafa;
-  border-color: #c3d9e0;
+  background: #f2f5f7;
+  border-color: #AED0EA;
 }
 .accordion .accordion-header {
-  background: #daeef5;
+  background: #d7ebf9;
   filter: none;
 }
 .accordion .accordion-header-selected {
-  background: #6caef5;
+  background: #3baae3;
 }
 .accordion .accordion-header-selected .panel-title {
-  color: #fff;
+  color: #ffffff;
 }
 .accordion .panel-last > .accordion-header {
-  border-bottom-color: #daeef5;
+  border-bottom-color: #d7ebf9;
 }
 .accordion .panel-last > .accordion-body {
-  border-bottom-color: #fafafa;
+  border-bottom-color: #f2f5f7;
 }
 .accordion .panel-last > .accordion-header-selected,
 .accordion .panel-last > .accordion-header-border {
-  border-bottom-color: #c3d9e0;
+  border-bottom-color: #AED0EA;
 }
 .accordion> .panel-hleft {
   float: left;
@@ -59,14 +59,14 @@
   border-width: 0 1px 0 0;
 }
 .accordion> .panel-hleft.panel-last > .accordion-header {
-  border-right-color: #daeef5;
+  border-right-color: #d7ebf9;
 }
 .accordion> .panel-hleft.panel-last > .accordion-body {
-  border-right-color: #fafafa;
+  border-right-color: #f2f5f7;
 }
 .accordion> .panel-hleft.panel-last > .accordion-header-selected,
 .accordion> .panel-hleft.panel-last > .accordion-header-border {
-  border-right-color: #c3d9e0;
+  border-right-color: #AED0EA;
 }
 .accordion> .panel-hright {
   float: right;
@@ -78,12 +78,12 @@
   border-width: 0 0 0 1px;
 }
 .accordion> .panel-hright.panel-last > .accordion-header {
-  border-left-color: #daeef5;
+  border-left-color: #d7ebf9;
 }
 .accordion> .panel-hright.panel-last > .accordion-body {
-  border-left-color: #fafafa;
+  border-left-color: #f2f5f7;
 }
 .accordion> .panel-hright.panel-last > .accordion-header-selected,
 .accordion> .panel-hright.panel-last > .accordion-header-border {
-  border-left-color: #c3d9e0;
+  border-left-color: #AED0EA;
 }

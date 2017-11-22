@@ -18,7 +18,7 @@ public class Client {
 	private String cno;
 	private String cname;
 	private String csex;
-	private int cage;
+	private String cage;
 	private String caddress;
 	private String cphone;
 	private String csymptom;
@@ -50,10 +50,11 @@ public class Client {
 	public void setCsex(String csex) {
 		this.csex = csex;
 	}
-	public int getCage() {
+	
+	public String getCage() {
 		return cage;
 	}
-	public void setCage(int cage) {
+	public void setCage(String cage) {
 		this.cage = cage;
 	}
 	public String getCaddress() {
@@ -98,12 +99,6 @@ public class Client {
 	}
 	public void setCremark(String cremark) {
 		this.cremark = cremark;
-	}
-	@Override
-	public String toString() {
-		return "Client [cid=" + cid + ", cno=" + cno + ", cname=" + cname + ", csex=" + csex + ", cage=" + cage
-				+ ", caddress=" + caddress + ", cphone=" + cphone + ", csymptom=" + csymptom + ", mno=" + mno + ", ano="
-				+ ano + ", cdate=" + cdate + ", cremark=" + cremark + "]";
 	}
 	
 

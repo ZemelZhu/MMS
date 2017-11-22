@@ -23,12 +23,12 @@
   background: inherit;
 }
 .combobox-item-hover {
-  background-color: #9cc8f7;
-  color: #404040;
+  background-color: #e4f1fb;
+  color: #2779AA;
 }
 .combobox-item-selected {
-  background-color: #6caef5;
-  color: #fff;
+  background-color: #3baae3;
+  color: #ffffff;
 }
 .combobox-icon {
   display: inline-block;

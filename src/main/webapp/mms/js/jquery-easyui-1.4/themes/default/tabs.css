@@ -84,9 +84,9 @@
   white-space: nowrap;
   border-width: 1px;
   border-style: solid;
-  -moz-border-radius: 0px 0px 0 0;
-  -webkit-border-radius: 0px 0px 0 0;
-  border-radius: 0px 0px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
 }
 .tabs li.tabs-selected a.tabs-inner {
   font-weight: bold;
@@ -168,9 +168,9 @@
   margin: -1px 4px 0 0;
 }
 .tabs-header-bottom .tabs li a.tabs-inner {
-  -moz-border-radius: 0 0 0px 0px;
-  -webkit-border-radius: 0 0 0px 0px;
-  border-radius: 0 0 0px 0px;
+  -moz-border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
 }
 .tabs-header-bottom .tabs-tool {
   top: 0;
@@ -234,18 +234,18 @@
   text-align: left;
   padding-left: 10px;
   padding-right: 10px;
-  -moz-border-radius: 0px 0 0 0px;
-  -webkit-border-radius: 0px 0 0 0px;
-  border-radius: 0px 0 0 0px;
+  -moz-border-radius: 5px 0 0 5px;
+  -webkit-border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
 }
 .tabs-header-right .tabs li a.tabs-inner {
   display: block;
   text-align: left;
   padding-left: 10px;
   padding-right: 10px;
-  -moz-border-radius: 0 0px 0px 0;
-  -webkit-border-radius: 0 0px 0px 0;
-  border-radius: 0 0px 0px 0;
+  -moz-border-radius: 0 5px 5px 0;
+  -webkit-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
 }
 .tabs-panels-right {
   float: right;
@@ -277,9 +277,9 @@
   padding-left: 3px;
 }
 .tabs-header .tabs-pill li a.tabs-inner {
-  -moz-border-radius: 0px 0px 0px 0px;
-  -webkit-border-radius: 0px 0px 0px 0px;
-  border-radius: 0px 0px 0px 0px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
 }
 .tabs-header-narrow,
 .tabs-header-narrow .tabs-narrow {
@@ -311,30 +311,66 @@
   margin-left: -1px;
 }
 .tabs-scroller-left {
-  background: #daeef5 url('images/tabs_icons.png') no-repeat 1px center;
+  background: #d7ebf9 url('images/tabs_icons.png') no-repeat 1px center;
 }
 .tabs-scroller-right {
-  background: #daeef5 url('images/tabs_icons.png') no-repeat -15px center;
+  background: #d7ebf9 url('images/tabs_icons.png') no-repeat -15px center;
 }
 .tabs li a.tabs-close {
   background: url('images/tabs_icons.png') no-repeat -34px center;
 }
 .tabs li a.tabs-inner:hover {
-  background: #9cc8f7;
-  color: #404040;
+  background: #e4f1fb;
+  color: #2779AA;
   filter: none;
 }
 .tabs li.tabs-selected a.tabs-inner {
-  background-color: #fafafa;
-  color: #404040;
+  background-color: #f2f5f7;
+  color: #2779AA;
+  background: -webkit-linear-gradient(top,#EFF5FF 0,#f2f5f7 100%);
+  background: -moz-linear-gradient(top,#EFF5FF 0,#f2f5f7 100%);
+  background: -o-linear-gradient(top,#EFF5FF 0,#f2f5f7 100%);
+  background: linear-gradient(to bottom,#EFF5FF 0,#f2f5f7 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EFF5FF,endColorstr=#f2f5f7,GradientType=0);
+}
+.tabs-header-bottom .tabs li.tabs-selected a.tabs-inner {
+  background: -webkit-linear-gradient(top,#f2f5f7 0,#EFF5FF 100%);
+  background: -moz-linear-gradient(top,#f2f5f7 0,#EFF5FF 100%);
+  background: -o-linear-gradient(top,#f2f5f7 0,#EFF5FF 100%);
+  background: linear-gradient(to bottom,#f2f5f7 0,#EFF5FF 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f2f5f7,endColorstr=#EFF5FF,GradientType=0);
+}
+.tabs-header-left .tabs li.tabs-selected a.tabs-inner {
+  background: -webkit-linear-gradient(left,#EFF5FF 0,#f2f5f7 100%);
+  background: -moz-linear-gradient(left,#EFF5FF 0,#f2f5f7 100%);
+  background: -o-linear-gradient(left,#EFF5FF 0,#f2f5f7 100%);
+  background: linear-gradient(to right,#EFF5FF 0,#f2f5f7 100%);
+  background-repeat: repeat-y;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EFF5FF,endColorstr=#f2f5f7,GradientType=1);
+}
+.tabs-header-right .tabs li.tabs-selected a.tabs-inner {
+  background: -webkit-linear-gradient(left,#f2f5f7 0,#EFF5FF 100%);
+  background: -moz-linear-gradient(left,#f2f5f7 0,#EFF5FF 100%);
+  background: -o-linear-gradient(left,#f2f5f7 0,#EFF5FF 100%);
+  background: linear-gradient(to right,#f2f5f7 0,#EFF5FF 100%);
+  background-repeat: repeat-y;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f2f5f7,endColorstr=#EFF5FF,GradientType=1);
 }
 .tabs li a.tabs-inner {
-  color: #404040;
-  background-color: #daeef5;
+  color: #2779AA;
+  background-color: #d7ebf9;
+  background: -webkit-linear-gradient(top,#EFF5FF 0,#d7ebf9 100%);
+  background: -moz-linear-gradient(top,#EFF5FF 0,#d7ebf9 100%);
+  background: -o-linear-gradient(top,#EFF5FF 0,#d7ebf9 100%);
+  background: linear-gradient(to bottom,#EFF5FF 0,#d7ebf9 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EFF5FF,endColorstr=#d7ebf9,GradientType=0);
 }
 .tabs-header,
 .tabs-tool {
-  background-color: #daeef5;
+  background-color: #d7ebf9;
 }
 .tabs-header-plain {
   background: transparent;
@@ -350,28 +386,28 @@
 .tabs-header-bottom .tabs li.tabs-selected a.tabs-inner,
 .tabs-header-left .tabs li.tabs-selected a.tabs-inner,
 .tabs-header-right .tabs li.tabs-selected a.tabs-inner {
-  border-color: #c3d9e0;
+  border-color: #AED0EA;
 }
 .tabs-p-tool a:hover,
 .tabs li a:hover.tabs-close,
 .tabs-scroller-over {
-  background-color: #9cc8f7;
+  background-color: #e4f1fb;
 }
 .tabs li.tabs-selected a.tabs-inner {
-  border-bottom: 1px solid #fafafa;
+  border-bottom: 1px solid #f2f5f7;
 }
 .tabs-header-bottom .tabs li.tabs-selected a.tabs-inner {
-  border-top: 1px solid #fafafa;
+  border-top: 1px solid #f2f5f7;
 }
 .tabs-header-left .tabs li.tabs-selected a.tabs-inner {
-  border-right: 1px solid #fafafa;
+  border-right: 1px solid #f2f5f7;
 }
 .tabs-header-right .tabs li.tabs-selected a.tabs-inner {
-  border-left: 1px solid #fafafa;
+  border-left: 1px solid #f2f5f7;
 }
 .tabs-header .tabs-pill li.tabs-selected a.tabs-inner {
-  background: #6caef5;
-  color: #fff;
+  background: #3baae3;
+  color: #ffffff;
   filter: none;
-  border-color: #c3d9e0;
+  border-color: #AED0EA;
 }

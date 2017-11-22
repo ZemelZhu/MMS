@@ -2,17 +2,23 @@ package mms.services;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+
 import mms.mapper.ClientMapper;
 import mms.pojo.Client;
 import mms.pojo.EasyUIResult;
 
+
 /*顾客service
 处理业务逻辑*/
 @Service
+@Transactional
 public class ClientService {
 	@Autowired
 	private ClientMapper clientMapper;

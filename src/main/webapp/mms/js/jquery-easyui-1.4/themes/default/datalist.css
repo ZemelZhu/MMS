@@ -7,10 +7,10 @@
   line-height: 25px;
   font-weight: bold;
   overflow: hidden;
-  background-color: #ebeced;
+  background-color: #efefef;
   border-style: solid;
   border-width: 0 0 1px 0;
-  border-color: #ccc;
+  border-color: #AED0EA;
 }
 .datalist .datagrid-group-expander {
   display: none;
@@ -47,7 +47,7 @@
   display: block;
   position: relative;
   cursor: pointer;
-  color: #404040;
+  color: #000000;
   text-decoration: none;
   overflow: hidden;
   margin: -2px -4px;
@@ -84,11 +84,11 @@
 .m-list li {
   border-style: solid;
   border-width: 0 0 1px 0;
-  border-color: #ccc;
+  border-color: #AED0EA;
 }
 .m-list li>a:hover {
-  background: #9cc8f7;
-  color: #404040;
+  background: #e4f1fb;
+  color: #2779AA;
 }
 .m-list .m-list-group {
   padding: 0 4px;

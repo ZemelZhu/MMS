@@ -1,9 +1,9 @@
 .progressbar {
   border-width: 1px;
   border-style: solid;
-  -moz-border-radius: 0px 0px 0px 0px;
-  -webkit-border-radius: 0px 0px 0px 0px;
-  border-radius: 0px 0px 0px 0px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
   overflow: hidden;
   position: relative;
 }
@@ -15,18 +15,18 @@
   position: relative;
   overflow: hidden;
   width: 0;
-  -moz-border-radius: 0px 0 0 0px;
-  -webkit-border-radius: 0px 0 0 0px;
-  border-radius: 0px 0 0 0px;
+  -moz-border-radius: 5px 0 0 5px;
+  -webkit-border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
 }
 .progressbar {
-  border-color: #c3d9e0;
+  border-color: #AED0EA;
 }
 .progressbar-text {
-  color: #404040;
+  color: #000000;
   font-size: 12px;
 }
 .progressbar-value .progressbar-text {
-  background-color: #6caef5;
-  color: #fff;
+  background-color: #3baae3;
+  color: #ffffff;
 }

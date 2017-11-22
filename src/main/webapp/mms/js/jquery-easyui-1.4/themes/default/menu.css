@@ -60,9 +60,9 @@
   margin-right: 0;
 }
 .menu-active {
-  -moz-border-radius: 0px 0px 0px 0px;
-  -webkit-border-radius: 0px 0px 0px 0px;
-  border-radius: 0px 0px 0px 0px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
 }
 .menu-item-disabled {
   opacity: 0.5;
@@ -75,45 +75,45 @@
 }
 .menu-shadow {
   position: absolute;
-  -moz-border-radius: 0px 0px 0px 0px;
-  -webkit-border-radius: 0px 0px 0px 0px;
-  border-radius: 0px 0px 0px 0px;
-  background: #fafafa;
-  -moz-box-shadow: 2px 2px 3px #fafafa;
-  -webkit-box-shadow: 2px 2px 3px #fafafa;
-  box-shadow: 2px 2px 3px #fafafa;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  background: #ccc;
+  -moz-box-shadow: 2px 2px 3px #cccccc;
+  -webkit-box-shadow: 2px 2px 3px #cccccc;
+  box-shadow: 2px 2px 3px #cccccc;
   filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=2,MakeShadow=false,ShadowOpacity=0.2);
 }
 .menu-rightarrow {
   background: url('images/menu_arrows.png') no-repeat -32px center;
 }
 .menu-line {
-  border-left: 1px solid #ddd;
+  border-left: 1px solid #ccc;
   border-right: 1px solid #fff;
 }
 .menu-sep {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #fff;
 }
 .menu {
   background-color: #fafafa;
-  border-color: #c3d9e0;
-  color: #404040;
+  border-color: #ddd;
+  color: #444;
 }
 .menu-content {
-  background: #fafafa;
+  background: #f2f5f7;
 }
 .menu-item {
   border-color: transparent;
   _border-color: #fafafa;
 }
 .menu-active {
-  border-color: #9cc8f7;
-  color: #404040;
-  background: #9cc8f7;
+  border-color: #AED0EA;
+  color: #2779AA;
+  background: #e4f1fb;
 }
 .menu-active-disabled {
   border-color: transparent;
   background: transparent;
-  color: #404040;
+  color: #444;
 }

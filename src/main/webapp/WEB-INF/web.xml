@@ -34,7 +34,7 @@
 		<!-- 自定义SpringMVC配置文件路径 -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring/springConfig.xml</param-value>
+			<param-value>classpath:spring/springMVCConfig.xml</param-value>
 		</init-param>
 		<!-- 随容器自动启动完成初始化 -->
 		<load-on-startup>1</load-on-startup>

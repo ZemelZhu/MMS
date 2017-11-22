@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -17,6 +18,7 @@ import mms.pojo.EasyUIResult;
 import mms.pojo.Medicine;
 
 @Service
+@Transactional
 public class MedicineService {
 	@Autowired
 	private MedicineMapper medicineMapper;
@@ -35,8 +37,7 @@ public class MedicineService {
 		PageInfo<Medicine> pageInfo = new PageInfo<Medicine>(medicines);
 		return new EasyUIResult(pageInfo.getTotal(), medicines);
 	}
-	
-	
+
 	public String saveMedicine(Medicine medicine) {
 		// TODO Auto-generated method stub
 		if (queryMedicineByMno(medicine.getMno()) != null) {
@@ -52,8 +53,7 @@ public class MedicineService {
 			medicineMapper.deleteMedicineByMno(mno);
 		} catch (Exception e) {
 			// TODO: handle exception
-			return "删除失败，可能是有客户购买此药，"
-			+ "无法删除此药品";
+			return "删除失败，可能是有客户购买此药，" + "无法删除此药品";
 		}
 		return "删除成功";
 	}
@@ -69,8 +69,7 @@ public class MedicineService {
 			medicineMapper.modifyMedicine(medicine);
 		} catch (Exception e) {
 			// TODO: handle exception
-			return "修改失败，可能是有客户购买此药，"
-			+ "无法修改编号";
+			return "修改失败，可能是有客户购买此药，" + "无法修改编号";
 		}
 		return "修改成功";
 	}
@@ -83,17 +82,15 @@ public class MedicineService {
 
 	public String deleteMedicineByRows(String[] array) {
 		// TODO Auto-generated method stub
-		String exceptionMno = null;
 		try {
 			for (String mno : array) {
-				System.out.println(mno);
-				exceptionMno=mno;
 				medicineMapper.deleteMedicineByMno(mno);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			return "操作异常，可能是编号为<font size='4'>"+exceptionMno+"</font>的药品被顾客购买过，"
-					+ "无法删除此药品，请重新选择";
+			// 抛出异常让spring捕获，进行事务回滚
+			throw new RuntimeException();
+
 		}
 		return "删除成功";
 	}
@@ -110,12 +107,13 @@ public class MedicineService {
 			// TODO: handle exception
 			return "操作异常，请刷新后操作";
 		}
-		
-		
-//		System.out.println(medicine);
-//		 List<Medicine> medicine1 = (List<Medicine>) medicineMapper.queryMultiMedicine(medicine);
-//		System.out.println(medicine1);
+
+		// System.out.println(medicine);
+		// List<Medicine> medicine1 = (List<Medicine>)
+		// medicineMapper.queryMultiMedicine(medicine);
+		// System.out.println(medicine1);
 	}
+
 	public EasyUIResult getMultiMedicine(Integer page, Integer rows, HttpSession session) {
 		// TODO Auto-generated method stub
 		PageHelper.startPage(page, rows);

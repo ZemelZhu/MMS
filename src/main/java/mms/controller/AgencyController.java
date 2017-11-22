@@ -3,6 +3,7 @@ package mms.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,12 +32,19 @@ public class AgencyController {
 	public String deleteAgencyByAno(String ano) {
 		return agencyService.deleteAgencyByAno(ano);
 	}
-//	批量删除
+
+	// 批量删除
 	@RequestMapping(value = "DeleteRows", produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String deleteAgencyByRows(
-			@RequestParam(value = "array[]") String[] array) {
-		return agencyService.deleteAgencyByRows(array);
+	public String deleteAgencyByRows(@RequestParam(value = "array[]") String[] array) {
+		try {
+			return agencyService.deleteAgencyByRows(array);
+		} catch (Exception e) {
+			// TODO: handle exception
+			// 捕获异常，spring进行事务回滚
+			return "操作异常，，某些经办人处理过顾客信息,无法删除该经办人，请重新选择";
+		}
+
 	}
 
 	// 修改经办人信息

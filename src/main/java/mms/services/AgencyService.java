@@ -3,6 +3,9 @@ package mms.services;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import mms.mapper.AgencyMapper;
@@ -12,6 +15,7 @@ import mms.pojo.EasyUIResult;
 /*经办人service
 处理业务逻辑*/
 @Service
+@Transactional
 public class AgencyService {
 	// 注入mapper
 	@Autowired
@@ -39,7 +43,7 @@ public class AgencyService {
 			}
 			agencyMapper.saveAgency(agency);
 			return "保存成功";
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			return "操作异常，请刷新后操作";
@@ -82,16 +86,15 @@ public class AgencyService {
 
 	public String deleteAgencyByRows(String[] array) {
 		// TODO Auto-generated method stub
-		String exceptionAno = null;
 		try {
 			for (String ano : array) {
-				System.out.println(ano);
-				exceptionAno = ano;
 				agencyMapper.deleteAgencyByAno(ano);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			return "操作异常，可能是编号为<font size='4'>" + exceptionAno + "</font>的经办人处理过顾客信息," + "无法删除此经办人，请重新选择";
+			// 抛出异常让spring捕获，进行事务回滚
+			throw new RuntimeException();
+
 		}
 		return "删除成功";
 	}

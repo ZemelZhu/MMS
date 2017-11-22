@@ -27,35 +27,51 @@ public class MedicineController {
 		Medicine medicine = medicineService.queryMedicineByMno(mno);
 		return medicine;
 	}
-/*	// 多条件药品信息保存session
-		@RequestMapping("QueryMultiMedicine")
-		@ResponseBody
-		public String queryMultiMedicine(Medicine medicine,HttpSession session) {
-			return medicineService.queryMultiMedicine(medicine,session);
-			
-		}
-//	多条件药品查询url
-		@RequestMapping("GetMultiMedicine")
-		@ResponseBody
-		public EasyUIResult getMultiMedicine(@RequestParam(value = "page", defaultValue = "1") Integer page,
-				@RequestParam(value = "rows", defaultValue = "5") Integer rows,
-				HttpSession session) {
-			return medicineService.getMultiMedicine(page, rows,session);
-			
-		}*/
-/*	// 通过mno删除药品信息
-	@RequestMapping(value = "DeleteMedicine", produces = "text/html;charset=UTF-8")
+
+	/*
+	 * // 多条件药品信息保存session
+	 * 
+	 * @RequestMapping("QueryMultiMedicine")
+	 * 
+	 * @ResponseBody public String queryMultiMedicine(Medicine
+	 * medicine,HttpSession session) { return
+	 * medicineService.queryMultiMedicine(medicine,session);
+	 * 
+	 * } // 多条件药品查询url
+	 * 
+	 * @RequestMapping("GetMultiMedicine")
+	 * 
+	 * @ResponseBody public EasyUIResult getMultiMedicine(@RequestParam(value =
+	 * "page", defaultValue = "1") Integer page,
+	 * 
+	 * @RequestParam(value = "rows", defaultValue = "5") Integer rows,
+	 * HttpSession session) { return medicineService.getMultiMedicine(page,
+	 * rows,session);
+	 * 
+	 * }
+	 */
+	/*
+	 * // 通过mno删除药品信息
+	 * 
+	 * @RequestMapping(value = "DeleteMedicine", produces =
+	 * "text/html;charset=UTF-8")
+	 * 
+	 * @ResponseBody public String deleteMedicineByMno(String mno) { return
+	 * medicineService.deleteMedicineByMno(mno); }
+	 */
+	// 批量删除
+	@RequestMapping(value = "DeleteRows", produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String deleteMedicineByMno(String mno) {
-		return medicineService.deleteMedicineByMno(mno);
-	}*/
-//	批量删除
-		@RequestMapping(value = "DeleteRows", produces = "text/html;charset=UTF-8")
-		@ResponseBody
-		public String deleteMedicineByRows(
-				@RequestParam(value = "array[]") String[] array) {
+	public String deleteMedicineByRows(@RequestParam(value = "array[]") String[] array) {
+		try {
+
 			return medicineService.deleteMedicineByRows(array);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "操作异常，可能某些药品被顾客购买过，" + "无法删该药品，请重新选择";
 		}
+	}
 
 	// 保存药品信息
 	@RequestMapping(value = "SaveMedicine", produces = "text/html;charset=UTF-8")
@@ -77,7 +93,7 @@ public class MedicineController {
 	public EasyUIResult queryAllMedicine(@RequestParam(value = "page", defaultValue = "1") Integer page,
 			@RequestParam(value = "rows", defaultValue = "5") Integer rows) {
 		return medicineService.queryAllMedicine(page, rows);
-		
+
 	}
 
 	// 获得药品信息

@@ -1,0 +1,61 @@
+<!-- /* 删除经办人信息*/ -->
+
+     <table id="DAMDatagrid" class="easyui-datagrid" toolbar="#agencyDelete"
+         title="经办人信息报表" 
+         data-options="
+         striped:true,
+          height:'auto',  
+           singleSelect: false,
+          selectOnCheck: true,//true勾选会选择行，false勾选不选择行, 1.3以后有此选项。重点在这里  
+          checkOnSelect: true, //true选择行勾选，false选择行不勾选, 1.3以后有此选项      
+         rownumbers:true,
+         remoteSort: false,
+         pagination:true,fitColumns:true,
+         url:'../Agency/GetMessage',pageSize:5,
+         pageList:[2,5,10]"
+         style="width:88%">
+      <thead>
+          <tr>
+            <th data-options="field:'GenreId',checkbox: true" width=2%>
+            </th>
+              <th data-options="field:'ano'"  width=10% >
+              编号</th>
+              <th data-options="field:'aname'" width=10%>
+              姓名</th>
+              <th data-options="field:'asex'"  width=5%>
+              性别</th>
+              <th data-options="field:'aphone'" width=15%>
+              电话</th>
+              <th data-options="field:'aremark'" width=57%>
+              备注</th>
+          </tr>
+      </thead>
+  </table>
+</div>
+<div id="agencyDelete">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-group_delete" plain="true" 
+        onclick="DAMDelete()">删除经办人</a>
+<script type="text/javascript">
+  function DAMDelete(){
+    var deleteRow = $('#DAMDatagrid').datagrid('getSelections');
+    if (deleteRow.length==0) {  
+            $.messager.alert("提示", "请选择要删除的行！");  
+            return;  
+        }else{   
+                var ids=[];    
+                for (var i = 0; i < deleteRow.length; i++) {
+                   ids.push(deleteRow[i].ano);
+                } 
+                $.post('../Agency/DeleteRows', {"array[]":ids
+              }, function(data) {
+                  /*optional stuff to do after success */
+                  $.messager.alert("提示", data);  
+                  $('#DAMDatagrid').datagrid('reload');  
+                });
+                
+        }
+  
+    }
+</script>
+
+

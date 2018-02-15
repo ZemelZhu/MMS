@@ -1,0 +1,70 @@
+<!-- /* 删除顾客信息*/ -->
+     <table id= "DCMDatagrid" class="easyui-datagrid"  toolbar="#clientDelete"
+     title="顾客信息删除" nowrap="false"
+         data-options="striped:true,
+          height:'auto',  
+           singleSelect: false,
+          selectOnCheck: true,//true勾选会选择行，false勾选不选择行, 1.3以后有此选项。重点在这里  
+          checkOnSelect: true, //true选择行勾选，false选择行不勾选, 1.3以后有此选项      
+         rownumbers:true,
+         remoteSort: false,
+         pagination:true,fitColumns:true,
+         url:'../Client/GetMessage',pageSize:5,
+         pageList:[2,5,10]"
+         style="width: 88%">
+      <thead>
+          <tr>
+            <th data-options="field:'GenreId',checkbox: true" width=2%>
+            </th>
+           <th data-options="field:'cno'" width=7%>
+            编号</th>
+            <th data-options="field:'cname'" width=6%>
+            姓名</th>
+            <th data-options="field:'csex'" width=2%>
+            性别</th>
+             <th data-options="field:'cage'" width=2%>
+            年龄</th>
+            <th data-options="field:'caddress'" width=19%>
+            住址</th>
+            <th data-options="field:'cphone'" width=7%>
+            电话</th>
+            <th data-options="field:'csymptom'" width=18%>
+            症状</th>
+            <th data-options="field:'mno'" width=6%>
+            已购药品</th>
+            <th data-options="field:'ano'" width=6%>
+            经办人</th>
+            <th data-options="field:'cdate'" width=5%>
+            录入日期</th>
+            <th data-options="field:'cremark'" width=18%>
+            备注</th>
+          </tr>
+      </thead>
+  </table>
+</div>
+<div id="clientDelete">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-user_delete" plain="true" 
+        onclick="DCMDelete()">删除信息</a>
+</div>
+<script type="text/javascript">
+  function DCMDelete(){
+    var deleteRow = $('#DCMDatagrid').datagrid('getSelections');
+    if (deleteRow.length==0) {  
+            $.messager.alert("提示", "请选择要删除的行！");  
+            return;  
+        }else{   
+                var ids=[];    
+                for (var i = 0; i < deleteRow.length; i++) {
+                   ids.push(deleteRow[i].cno);
+                } 
+                $.post('../Client/DeleteRows', {"array[]":ids
+              }, function(data) {
+                  /*optional stuff to do after success */
+                  $.messager.alert("提示", data);  
+                  $('#DCMDatagrid').datagrid('reload');  
+                });
+                
+        }
+  
+    }
+</script>

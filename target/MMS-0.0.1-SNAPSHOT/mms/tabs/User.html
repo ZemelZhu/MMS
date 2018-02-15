@@ -1,0 +1,153 @@
+<!-- 用户管理页面 -->
+    <table id="dg" title="系统权限管理" class="easyui-datagrid" style="width:88%"
+            url="../User/queryAllUser"
+            toolbar="#toolbar" pagination="true"
+            rownumbers="true" fitColumns="true" 
+            singleSelect="true"
+            data-options="pageSize:5,pageList:[2,5,10]"
+            >
+        <thead>
+            <tr>
+                <th field="uUsername" width="15%">名字</th>
+                <th field="uPassword" width="15%">密码</th>
+                <th field="uAccess" width="69%">权限</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="toolbar">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">添加</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">删除</a>
+    </div>
+    <div id="dlg" class="easyui-dialog" style="width:400px"
+            closed="true" buttons="#dlg-buttons"
+            data-options="iconCls:'icon-save',modal:true,draggable:false"
+            >
+        <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
+            <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">用户信息</div>
+            <div style="margin-bottom:10px">
+                <input name="uUsername" class="easyui-textbox"  id="uUsername" 
+                style="width:100%" 
+                 data-options="prompt:'用户名',required:true,
+                 validType:['length[0,12]'],invalidMessage:'最长12位且不为空'"">
+            </div>
+            <div style="margin-bottom:10px">
+                <input name="uPassword" class="easyui-textbox"   id="uPassword"
+                style="width:100%" 
+                data-options="prompt:'密码',validType:['length[0,12]'],
+                invalidMessage:'最长12位'">
+            </div>
+                       <select name="uAccess" id="combobox" data-options="multiple:true,panelHeight:'auto'
+                       ,prompt:'权限'"
+         class="esayui-combobox" style="width:150px;">
+             <option value="信息查询功能">
+                 信息查询功能
+             </option>
+            <option value="信息录入功能">
+                 信息录入功能
+             </option>
+             <option value="信息删除功能">
+                 信息删除功能
+             </option>
+             <option value="信息修改功能">
+                 信息修改功能
+             </option>
+             <option value="信息浏览功能">
+                 信息浏览功能
+             </option>
+             <option value="数据报表功能">
+                数据报表功能
+             </option>
+         </select>   
+        </form>
+    </div>
+    <div id="dlg-buttons">
+        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Save</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancel</a>
+    </div>
+    <script type="text/javascript">
+        var url;
+        var i=0;
+        function newUser(){
+            $('#dlg').dialog('open').dialog('center').dialog('setTitle','New User');
+            $('#fm').form('clear');
+            url = '../User/AddUser';
+            i=1;
+        }
+        function editUser(){
+            i=2;
+            var row = $('#dg').datagrid('getSelected');
+            if(row.uUsername=="admir"){
+                $.messager.alert('警告','超级管理员不可编辑');
+                return ;
+            }
+            if (row){
+                $('#dlg').dialog('open').dialog('center').dialog('setTitle','Edit User');
+                 url = '../User/UpdateUser';
+                $('#fm').form('load',{
+                    uUsername:row.uUsername,
+                    uPassword:row.uPassword,
+                });
+                   $("#uUsername").textbox('disable');
+                console.log(uAccess);
+            }
+        }
+        function saveUser(){
+            
+            $.post('../User/GetUUsername', {
+            uUsername:$("#uUsername").val()
+        }, function(data) {
+            /*optional stuff to do after success */
+            // i用于判断是新建用户还是编辑用户
+            if(data!=""&&i==1) {
+                // data:用户已存在
+                $.messager.alert('警告',data);
+            }
+            else
+            {
+                     if($('#uPassword').textbox('isValid')&&($('#uUsername').textbox('isValid')))
+                    {
+                               
+                    $('#fm').form('submit',{
+                        url: url,
+                        onSubmit: function(event){
+                             $("#uUsername").textbox('enable');
+                           $(this).form('validate');
+                        },
+                        success: function(result){
+                            
+                                $('#dlg').dialog('close');        // close the dialog
+                                $('#dg').datagrid('reload');    // reload the user data
+                            
+                        }
+                    });
+                }
+                else $.messager.alert('警告','验证错误');   
+            }
+            
+        });
+        }
+        function destroyUser(){
+            var row = $('#dg').datagrid('getSelected');
+            if(row.uUsername=="admir"){
+                $.messager.alert('警告','超级管理员不可删除');
+                return ;
+            }
+            if (row){
+                $.messager.confirm('Confirm','确定删除用户?',function(r){
+                    if (r){
+                        $.post('../User/DeleteUser',{uUsername:row.uUsername},function(result){
+                        $('#dg').datagrid('reload'); 
+                        });
+                    }
+                });
+            }
+        }
+     // 获得多选框内容
+     $('#combobox').combobox({
+             onChange: function() {
+                 var value = $('#combobox').combobox('getValues');
+                 console.log(value);
+             }
+         });
+    </script>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="renderer" content="webkit">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+<title>医药管理信息系统</title>
+<link rel="Shortcut Icon" href="./images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="./js/jquery-easyui-1.4/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="./js/jquery-easyui-1.4/themes/icon.css" />
+<script language="javascript" src="./js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="./js/jquery-easyui-1.4/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="./js/jquery-easyui-1.4/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script language="javascript" src="./js/jquery.jqprint-0.3.js"></script>
+    <script type="text/javascript"
+    src="./myjavascript/MessageSearch.js"></script>
+    <script type="text/javascript"
+    src="./myjavascript/MessageEntry.js"></script>
+    <script type="text/javascript"
+    src="./myjavascript/MessageDelete.js"></script>
+    <script type="text/javascript" 
+    src="./myjavascript/MessageModify.js"></script>
+    <script type="text/javascript" 
+    src="./myjavascript/MessageBrowse.js"></script>
+    <script type="text/javascript" 
+    src="./myjavascript/MessageReport.js"></script> 
+    <script type="text/javascript" 
+    src="./myjavascript/User.js"></script>  
+    <script type="text/javascript" 
+    src="./myjavascript/Help.js"></script> 
+     
+</head>
+<body >
+<!-- layout布局 -->
+    <div  class="easyui-layout" data-options="fit:true"
+    
+    > 
+<!-- 顶部   -->
+    <div id="north" style="
+    background-size:cover; 
+    background-image: url(./images/back.png)" 
+    
+    data-options="region:'north',split:true,border:false,
+        height:'13%',disabled:true">
+       
+   
+<div style="margin-left: 80%; margin-top: 1%; font-size: 28px">
+    用户名:<span id="loginName" ></span><br>
+    <span style="font-size: 20px">
+    <a href="javascript:logOff()">注销</a>|
+    <a href="javascript:ModifyPassword()">修改密码</a>
+    </span>
+</div>
+    
+    </div> 
+<!-- 菜单 -->
+    <div data-options="region:'west',title:'医药管理信息系统',split:true,height:'86%',
+    width:'209',disabled:true " style="background:#eee">
+        <div id="accordion" class="easyui-accordion" data-options="selected:-1">
+<!-- 信息查询-SCM-SAM-SMM+MessageSearch  -->
+            <div title="信息查询" id="SC" data-options="iconCls:'icon-remove'" >
+                <a  href="javascript:SCMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-user'" style="width: 100%">查询顾客信息</a>  
+                <a  href="javascript:SAMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-group'" style="width: 100%">查询经办人信息</a>  
+                <a href="javascript:SMMclick()" class="easyui-linkbutton" data-options="
+                iconCls:'icon-pill'" style="width: 100%">查询药品信息</a>  
+            </div>  
+<!-- 信息录入-ECM-EAM-EMM+MessageEntry   -->
+            <div title="信息录入" id="EC" data-options="iconCls:'icon-01'">
+               <a  href="javascript:ECMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-user_add'" style="width: 100%">录入顾客信息</a>  
+                <a  href="javascript:EAMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-group_add'" style="width: 100%">录入经办人信息</a>  
+                <a href="javascript:EMMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-pill_add'" style="width: 100%">录入药品信息</a>  
+            </div> 
+<!-- 信息删除-DCM-DAM-DMM+MessageDelete  -->
+            <div title="信息删除" id="DC" data-options="iconCls:'icon-delete'">
+                <a  href="javascript:DCMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-user_delete'" style="width: 100%">删除顾客信息</a>  
+                <a  href="javascript:DAMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-group_delete'" style="width: 100%">删除经办人信息</a>  
+                <a href="javascript:DMMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-pill_delete'" style="width: 100%">删除药品信息</a> 
+            </div>  
+<!-- 信息修改-MCM-MAM-MMM+MessageModify  -->
+            <div title="信息修改" id="MC" data-options="iconCls:'icon-edit'">
+                 <a  href="javascript:MCMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-user_edit'" style="width: 100%">修改顾客信息</a>  
+                <a  href="javascript:MAMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-group_edit'" style="width: 100%">修改经办人信息</a>  
+                <a  href="javascript:MMMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-pill'" style="width: 100%">修改药品信息</a>
+            </div>
+<!-- 信息浏览-BCM-BAM-BMM+MessageBrowse  -->
+            <div title="信息浏览" id="BC" data-options="iconCls:'icon-search'">
+                <a  href="javascript:BCMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-user_alert'" style="width: 100%">浏览顾客信息</a>  
+                <a  href="javascript:BAMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-group_error'" style="width: 100%">浏览经办人信息</a>  
+                <a  href="javascript:BMMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-pill_error'" style="width: 100%">浏览药品信息</a>  
+
+            </div> 
+<!-- 数据报表-RCM-RAM-RMM+MessageReport  -->
+            <div title="数据报表" id="RC" data-options="iconCls:'icon-printer'">
+                 <a  href="javascript:RCMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-user_go'" style="width: 100%"">顾客信息报表</a>  
+                <a  href="javascript:RAMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-group_go'" style="width: 100%">经办人信息报表</a>  
+                <a  href="javascript:RMMclick()" class="easyui-linkbutton" data-options="iconCls:'icon-pill_go'" style="width: 100%">药品信息报表</a>
+            </div> 
+<!-- 用户管理  MMM-->
+            <div title="用户管理" id="MM" data-options="iconCls:'icon-user_key'">
+                 <a  href="javascript:UserManageclick()" class="easyui-linkbutton" data-options="iconCls:'icon-user_key'" style="width: 100%">用户管理</a>  
+            </div>
+<!-- 系统帮助  -->
+            <div title="系统帮助" data-options="iconCls:'icon-help'">
+                  <a  href="javascript:closeAll()" class="easyui-linkbutton" data-options="iconCls:'icon-undo',width:200">关闭全部窗口</a>  
+                 <a  href="javascript:helpclick()" class="easyui-linkbutton" data-options="iconCls:'icon-help'" style="width: 100%">系统帮助</a>  
+            </div>  
+        </div>  
+    </div>
+<!-- 输出体    -->
+    <div id="output" class="easyui-tabs" 
+    data-options="tools:'#tt1',region:'center',fit:true,height:'86%',
+    border:true,"
+     style="background:#eee"> 
+     
+     </div>   
+</div> 
+
+
+<!-- 隐藏页面 -->
+<div id="bbb" class="easyui-dialog" style="width:400px"
+            closed="true" buttons="#dlg-buttons"
+            data-options="iconCls:'icon-save',modal:true,draggable:false"
+            >
+<form id="formbbb" method="post" novalidate style="margin:0;padding:20px 50px">
+            <div style="margin-bottom:10px">
+                 <input name="oldPassword" class="easyui-textbox"   id="oldPassword"
+                style="width:100%" 
+                data-options="prompt:'密码'
+                "></br></br>
+                <input name="uPassword" class="easyui-textbox"   id="newUerPassword"
+                style="width:100%" 
+                data-options="prompt:'新密码,最长12位'
+                ">
+            </div>    
+        </form>
+        </div>
+         <div id="dlg-buttons">
+        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" 
+        onclick="newPassword()" style="width:90px">Save</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" 
+        onclick="javascript:$('#bbb').dialog('close')" style="width:90px">Cancel</a>
+    </div>
+</body>
+<script type="text/javascript">
+
+    var access;  //aceess权限
+    $(function(){
+
+        var i=1; //用于管理用户的编辑新增判断
+         $.ajax({
+        url: '../Login/GetLoginName',            
+        success: function (data) {
+            $("#loginName").html(data.uUsername);
+            access = data.uAccess;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            /*错误信息处理*/
+            $.messager.alert('警告','登陆错误,请重新登陆');  
+        }
+    });
+       
+    });
+    
+</script>
+</html>

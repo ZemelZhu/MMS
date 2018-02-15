@@ -1,0 +1,183 @@
+<!-- 顾客信息修改MCM-->
+<div  style="margin: 2% 0px 0px 30%">
+  <div class="easyui-panel" title="顾客编号查询" 
+  data-options="iconCls:'icon-user'"
+  style="max-width:400px;padding:30px 60px;">
+    <div style="margin-bottom:20px">
+        <input id="MCMId" class="easyui-textbox" 
+         labelPosition="top" 
+        data-options="prompt:'请输入顾客编号...'" 
+        style="width:100%;height:32px">
+    </div>
+    <div>
+        <a href="javascript:MCMIdclick()" class="easyui-linkbutton" iconCls="icon-ok" 
+          style="width:100%">查询
+        </a>
+    </div>
+  </div>
+</div>
+<!-- 查询结束 -->
+
+<!-- 隐藏页面 -->
+<!-- 隐藏对话框 -->    
+<div class="easyui-dialog" title="顾客信息" closed="true" id="MCMdialog"
+  data-options="iconCls:'icon-user',modal:true,draggable:false"
+  style="width:1600px;height:710px">
+  <div style="margin:30px 0px 0px 100px;font-size: 40px">
+    <form id="MCMform" method="post">
+      <input type="hidden" name="cid" id="mccid">
+      <div style="margin-bottom: 30px">
+        编号:<input  name="cno" id="mccno" 
+        class="easyui-textbox"
+        style="width: 200px;height:40px"
+        data-options="prompt:'长度小于10'"></input>
+        &nbsp;&nbsp;
+        姓名:<input  name="cname"  id="mccname" 
+        class="easyui-textbox"
+        style="width: 200px;height:40px"
+        data-options="prompt:'长度小于8'"></input>
+        &nbsp;&nbsp;
+        性别:<select  class="easyui-combobox" name="csex"  id="mccsex" 
+        data-options="panelHeight:'auto'"
+        style="width: 50px;height:40px">   
+        <option value="男">男</option>   
+        <option value="女">女</option> 
+        </select>  
+      </div>
+      <div style="margin-bottom: 20px">
+        年龄:<input  name="cage" id="mccage" 
+        class="easyui-textbox"
+        style="width: 200px;height:40px"
+        data-options="prompt:'长度小于4'"></input>
+        &nbsp;&nbsp;
+        电话:<input  name="cphone" id="mccphone" 
+        class="easyui-textbox" 
+        style="width: 200px;height:40px"
+        data-options="prompt:'长度小于20'"></input>
+        &nbsp;&nbsp;
+        经办人:<input  name="ano" id="mcano" 
+        class="easyui-combobox"
+        style="width: 150px;height:40px"
+        data-options="url:'../Agency/GetAllAgency',
+        valueField:'ano',textField:'ano',panelHeight:'auto'"></input>
+      </div>
+      <div style="margin-bottom: 20px">
+        录入日期:<input  name="cdate" id="mccdate" 
+        class="easyui-datebox"
+        style="width: 200px;height:40px"
+        data-options=""></input>
+        &nbsp;
+        已购药品:<input  name="mno" id="mcmno" 
+        class="easyui-combobox" 
+        style="width: 350px;height:40px"
+        data-options="url:'../Medicine/GetAllMedicine',
+        valueField:'mno',textField:'mno',panelHeight:'auto'"></input>
+      </div>
+      <div style="margin-bottom: 30px;">
+       住址:<input  name="caddress" id="mccaddress" 
+       class="easyui-textbox" 
+       style="width: 1150px;height:40px"
+       data-options="prompt:'长度小于50'"></input></td>
+      </div>
+      <div style="margin-bottom: 30px;">
+        症状:<input  name="csymptom" id="mccsymptom" 
+        multiline="true"
+        class="easyui-textbox" 
+        style="width: 500px;height:150px"
+        data-options="prompt:'长度小于50'" >
+        </input>&nbsp;
+        备注:<input  name="cremark" id="mccremark" 
+        multiline="true"
+        class="easyui-textbox" 
+        style="width: 500px;height:150px"
+        data-options="prompt:'长度小于50'" ></input>
+      </div>
+    </form>
+    <a  href="javascript:MCMclickModify()"
+    class="easyui-linkbutton" 
+    data-options="text:'asd',iconCls:'icon-user' "
+    style="width: 150px;height: 40px;
+            margin-left: 35%" ><h1>修改</h1></a> 
+  </div>
+</div>
+<script type="text/javascript">
+ function MCMIdclick() {
+  $.post("../Client/GetClient", {
+    cno: $('#MCMId').textbox('getValue')
+  }, function(data) {
+    if (data == ''){
+      $.messager.alert('警告', '顾客编号无效');
+      return ;
+    }
+    $('#MCMdialog').dialog('open');
+    $("#mccid").val(data.cid);
+    $("#mccno").textbox('setValue', data.cno);
+    $("#mccno").textbox('textbox').css("font-size", "18pt");
+    $("#mccname").textbox('setValue', data.cname);
+    $("#mccname").textbox('textbox').css("font-size", "18pt");
+    $("#mccsex").combobox('setValue', data.csex);
+    $("#mccsex").combobox('textbox').css("font-size", "18pt");
+    $("#mccage").textbox('setValue', data.cage);
+    $("#mccage").textbox('textbox').css("font-size", "18pt");
+    $("#mccaddress").textbox('setValue', data.caddress);
+    $("#mccaddress").textbox('textbox').css("font-size", "15pt");
+    $("#mccphone").textbox('setValue', data.cphone);
+    $("#mccphone").textbox('textbox').css("font-size", "18pt");
+    $("#mccsymptom").textbox('setValue', data.csymptom);
+    $("#mccsymptom").textbox('textbox').css("font-size", "18pt");
+    $("#mcmno").combobox('setValue', data.mno);
+    $("#mcmno").combobox('textbox').css("font-size", "18pt");
+    $("#mcano").combobox('setValue', data.ano);
+    $("#mcano").combobox('textbox').css("font-size", "18pt");
+    $("#mccdate").datebox('setText', data.cdate);
+    $("#mccdate").datebox('textbox').css("font-size", "18pt");
+    $("#mccremark").textbox('setValue', data.cremark);
+    $("#mccremark").textbox('textbox').css("font-size", "18pt");
+  });
+}
+function MCMclickModify(){
+   if($("#mccno").val().length>10||$("#mccno").val().length==0) {
+        $.messager.alert('提示', '编号不能长度大于10且不为空'); 
+        return ;
+    }
+    if($("#mccname").val().length>8) {
+        $.messager.alert('提示', '姓名不能长度大于8'); 
+        return ;
+    }
+    if($("#mccphone").val().length>20) {
+        $.messager.alert('提示', '电话不能长度大于20'); 
+        return ;
+    }
+    if($("#mccage").val().length>4) {
+        $.messager.alert('提示', '年龄不能长度大于4'); 
+        return ;
+    }
+    if($("#mccaddress").val().length>50) {
+        $.messager.alert('提示', '地址不能长度大于50'); 
+        return ;
+    }
+    if($("#mccsymptom").val().length>50) {
+        $.messager.alert('提示', '症状不能长度大于50'); 
+        return ;
+    }
+     if($("#mccremark").val().length>50) {
+        $.messager.alert('提示', '备注不能长度大于50'); 
+        return ;
+    }
+  $('#MCMform').form({    
+    url:'../Client/ModifyClient',  
+    onSubmit: function(){    
+        // do some check    
+        // return false to prevent submit;    
+    },    
+    success:function(data){    
+       $.messager.alert('提示', data); 
+       $('#MCMdialog').dialog('close'); 
+    }    
+});    
+// submit the form    
+$('#MCMform').submit();  
+
+   
+}
+</script>

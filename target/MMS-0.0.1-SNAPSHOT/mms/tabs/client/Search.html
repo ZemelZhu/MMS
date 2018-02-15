@@ -1,0 +1,123 @@
+<!-- 顾客编号查询SCM -->
+<div  style="margin: 2% 0px 0px 30%">
+  <div class="easyui-panel" title="顾客编号查询" 
+  data-options="iconCls:'icon-user'"
+  style="max-width:400px;padding:30px 60px">
+    <div style="margin-bottom:20px">
+      <input id="SCMId" class="easyui-textbox" 
+      labelPosition="top" 
+      data-options="prompt:'请输入顾客编号...'" 
+      style="width:100%;height:35px">
+    </div>
+    <div>
+        <a href="javascript:SCMIdclick($('#SCMId').textbox('getValue'))" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%">查询</a>
+    </div>
+  </div>
+</div>
+<!-- 查询结束 -->
+
+<!-- 隐藏页面 -->
+<!-- 隐藏对话框 -->
+ 
+<div class="easyui-dialog" title="顾客信息" id="SCMdialog" closed="true"
+data-options="iconCls:'icon-user',modal:true,draggable:false"
+style="width:1600px;height:600px">
+    <div style="margin:30px 0px 0px 100px;font-size: 40px">
+      <div style="margin-bottom: 30px">
+        编号:<input id="SCMcno" class="easyui-textbox"
+        style="width: 200px;height:40px"
+        data-options="disabled:true"></input>
+        &nbsp;&nbsp;
+        姓名:<input id="SCMcname"
+        class="easyui-textbox"
+        style="width: 200px;height:40px"
+        data-options="disabled:true"></input>
+        &nbsp;&nbsp;
+        性别:<input id="SCMcsex"
+        class="easyui-textbox"
+        style="width: 40px;height:40px"
+        data-options="disabled:true"></input>
+      </div>
+      <div style="margin-bottom: 20px">
+        年龄:<input id="SCMcage"
+        class="easyui-textbox"
+        style="width: 200px;height:40px"
+        data-options="disabled:true"></input>
+        &nbsp;&nbsp;
+        电话:<input id="SCMcphone"
+        class="easyui-textbox" 
+        style="width: 200px;height:40px"
+        data-options="disabled:true"></input>
+        &nbsp;&nbsp;
+        经办人:<input id="SCMano"
+        class="easyui-textbox"
+        style="width: 150px;height:40px"
+        data-options="disabled:true"></input>
+      </div>
+    <div style="margin-bottom: 20px">
+      录入日期:<input id="SCMcdate"
+      class="easyui-textbox"
+      style="width: 150px;height:40px"
+      data-options="disabled:true"></input>
+      &nbsp;&nbsp;
+      已购药品:<input id="SCMmno"
+      class="easyui-textbox" 
+      style="width: 150px;height:40px"
+      data-options="disabled:true"></input>
+    </div>
+    <div style="margin-bottom: 30px;">
+      住址:<input id="SCMcaddress"
+      class="easyui-textbox" 
+      style="width: 1150px;height:40px"
+      data-options="disabled:true"></input></td>
+    </div>
+    <div style="margin-bottom: 30px;">
+      症状:<input 
+      id="SCMcsymptom" multiline="true"
+      class="easyui-textbox" 
+      style="width: 500px;height:150px"
+      data-options="disabled:true" >
+      </input>&nbsp;
+      备注:<input id="SCMcremark" multiline="true"
+      class="easyui-textbox" style="width: 500px;height:150px"
+      data-options="disabled:true" ></input>
+    </div>     
+  </div>
+</div>
+<!-- 测试页面完成 -->
+<script type="text/javascript">
+  function SCMIdclick(scmcno) {
+
+  $.post("../Client/GetClient", {
+    cno: scmcno
+  }, function(data) {
+    if (data == ''){
+      $.messager.alert('警告', '顾客编号无效');
+      return ;
+    }
+    $('#SCMdialog').dialog('open');
+    $("#SCMcno").textbox('setValue', data.cno);
+    $("#SCMcno").textbox('textbox').css("font-size", "18pt");
+    $("#SCMcname").textbox('setValue', data.cname);
+    $("#SCMcname").textbox('textbox').css("font-size", "18pt");
+    $("#SCMcsex").textbox('setValue', data.csex);
+    $("#SCMcsex").textbox('textbox').css("font-size", "18pt");
+    $("#SCMcage").textbox('setValue', data.cage);
+    $("#SCMcage").textbox('textbox').css("font-size", "18pt");
+    $("#SCMcaddress").textbox('setValue', data.caddress);
+    $("#SCMcaddress").textbox('textbox').css("font-size", "18pt");
+    $("#SCMcphone").textbox('setValue', data.cphone);
+    $("#SCMcphone").textbox('textbox').css("font-size", "18pt");
+    $("#SCMcsymptom").textbox('setValue', data.csymptom);
+    $("#SCMcsymptom").textbox('textbox').css("font-size", "18pt");
+    $("#SCMmno").textbox('setValue', data.mno);
+    $("#SCMmno").textbox('textbox').css("font-size", "18pt");
+    $("#SCMano").textbox('setValue', data.ano);
+    $("#SCMano").textbox('textbox').css("font-size", "18pt");
+    $("#SCMcdate").textbox('setValue', data.cdate);
+    $("#SCMcdate").textbox('textbox').css("font-size", "18pt");
+    $("#SCMcremark").textbox('setValue', data.cremark);
+    $("#SCMcremark").textbox('textbox').css("font-size", "18pt");
+  });
+}
+</script>

@@ -1,0 +1,28 @@
+<!-- /* 浏览经办人信息*/ -->
+     <table class="easyui-datagrid" 
+         data-options="striped:true,
+         pagination:true,
+         
+         
+         url:'../Agency/GetMessage',pageSize:5,
+         pageList:[2,5,10]"
+         style="width: 88%">
+      <thead>
+          <tr>
+            
+
+            
+            <th data-options="field:'ano'"  width=12% >
+              编号</th>
+              <th data-options="field:'aname'" width=10%>
+              姓名</th>
+              <th data-options="field:'asex'"  width=5%>
+              性别</th>
+              <th data-options="field:'aphone'" width=15%>
+              电话</th>
+              <th data-options="field:'aremark'" width=59%>
+              备注</th>
+
+          </tr>
+      </thead>
+  </table>

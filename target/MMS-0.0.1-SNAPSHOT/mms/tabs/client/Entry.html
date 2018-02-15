@@ -1,0 +1,149 @@
+<!-- 录入顾客信息ECM -->
+
+<div style="margin:10px 0px 0px 50px">
+    <div  style="width:1600px;height:600px">
+      <form id="ECMform" method="post" >  
+        <div style="margin:30px 0px 0px 100px;font-size: 40px">
+            <div style="margin-bottom: 30px">
+              编号:<input  name="cno" id="eccno" 
+              class="easyui-textbox"
+              style="width: 200px;height:40px"
+              data-options="prompt:'长度小于10'"></input>
+              &nbsp;&nbsp;
+              姓名:<input  name="cname"  id="eccname" 
+              class="easyui-textbox"
+              style="width: 200px;height:40px"
+              data-options="prompt:'长度小于8'"></input>
+              &nbsp;&nbsp;
+              性别:<select  class="easyui-combobox" name="csex" 
+              data-options="panelHeight:'auto'" 
+              style="width: 40px;height:40px">   
+                <option value="男">男</option>   
+                <option value="女">女</option> 
+              </select>  
+            </div>
+            <div style="margin-bottom: 20px">
+              年龄:<input  name="cage" id="eccage" 
+              class="easyui-textbox"
+              style="width: 200px;height:40px"
+              data-options="prompt:'长度小于4'"></input>
+              &nbsp;&nbsp;
+              电话:<input  name="cphone" id="eccphone" 
+              class="easyui-textbox" 
+              style="width: 200px;height:40px"
+              data-options="prompt:'长度小于20'"></input>
+              &nbsp;&nbsp;
+              经办人:<input  name="ano" id="ecano" 
+              class="easyui-combobox"
+              style="width: 150px;height:40px"
+              data-options="url:'../Agency/GetAllAgency',prompt:'必填',
+              valueField:'ano',textField:'ano',panelHeight:'300px'"></input>
+            </div>
+            <div style="margin-bottom: 20px">
+                录入日期:<input  name="cdate" id="eccdate" 
+                class="easyui-datebox"
+                style="width: 120px;height:40px"
+                data-options="prompt:'必填'"></input>
+                &nbsp;&nbsp;
+                已购药品:<input  name="mno" id="ecmno" 
+                class="easyui-combobox" 
+                style="width: 200px;height:40px"
+                data-options="url:'../Medicine/GetAllMedicine',prompt:'必填',
+                valueField:'mno',textField:'mno',panelHeight:'300px'"></input>
+            </div>
+            <div style="margin-bottom: 30px">
+               住址:<input  name="caddress" id="eccaddress" 
+                class="easyui-textbox" 
+                style="width: 1150px;height:40px"
+                data-options="prompt:'长度小于50'"></input></td>
+            </div>
+            <div style="margin-bottom: 30px;">
+                症状:<input  name="csymptom" id="eccsymptom" 
+                multiline="true"
+                class="easyui-textbox" 
+                style="width: 500px;height:150px"
+                data-options="prompt:'长度小于50'" >
+                </input>&nbsp;
+                备注:<input  name="cremark" id="eccremark" 
+                multiline="true"
+                class="easyui-textbox" 
+                style="width: 500px;height:150px"
+                data-options="prompt:'长度小于50'" >
+                </input>
+            </div>
+          </div>
+        </form>
+
+    <a  href="javascript:ECMclickEntry()"
+        class="easyui-linkbutton"
+        style="width: 150px;height: 40px;
+            margin-left: 35%" 
+        data-options="iconCls:'icon-user_add'"><h1>录入</h1>
+    </a>
+  </div>
+</div>
+<!-- 测试完成 -->
+<script type="text/javascript">
+  function ECMclickEntry() {
+
+  
+    if($("#eccno").val().length>10||$("#eccno").val().length==0) {
+        $.messager.alert('提示', '编号不能长度大于10且不为空'); 
+        return ;
+    }
+    if($("#eccname").val().length>8) {
+        $.messager.alert('提示', '姓名不能长度大于8'); 
+        return ;
+    }
+    if($("#eccphone").val().length>20) {
+        $.messager.alert('提示', '电话不能长度大于20'); 
+        return ;
+    }
+    if($("#eccage").val().length>4) {
+        $.messager.alert('提示', '年龄不能长度大于4'); 
+        return ;
+    }
+    
+    if($("#eccdate").combo("getText").length==0) {
+    	// alert($("#eccdate").combo("getText"));
+        $.messager.alert('提示', '日期不能为空'); 
+        return ;
+    }
+    if($("#ecano").combobox("getText").length==0) {
+    	// alert($("#eccdate").combo("getText"));
+        $.messager.alert('提示', '经办人不能为空'); 
+        return ;
+    }
+    if($("#ecmno").combobox("getText").length==0) {
+    	// alert($("#eccdate").combo("getText"));
+        $.messager.alert('提示', '已购药品不能为空'); 
+        return ;
+    }
+    
+    if($("#eccaddress").val().length>50) {
+        $.messager.alert('提示', '地址不能长度大于50'); 
+        return ;
+    }
+    if($("#eccsymptom").val().length>50) {
+        $.messager.alert('提示', '症状不能长度大于50'); 
+        return ;
+    }
+     if($("#eccremark").val().length>50) {
+        $.messager.alert('提示', '备注不能长度大于50'); 
+        return ;
+    }
+              $('#ECMform').form({    
+                url:'../Client/SaveClient',    
+                onSubmit: function(){    
+                    // do some check    
+                    // return false to prevent submit;    
+                },    
+                success:function(data){    
+                    // alert("aSome");
+                    $.messager.alert('提示', data); 
+                }    
+            });    
+            // submit the form    
+            $('#ECMform').submit();  
+}
+</script>

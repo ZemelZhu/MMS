@@ -1,0 +1,32 @@
+<!-- /* 报表药品信息*/ -->
+<div id="RMMPrint" >
+     <table class="easyui-datagrid" toolbar="#medicinePrint"
+     title="药品信息报表" 
+         data-options="striped:true,
+         pagination:true,
+         url:'../Medicine/GetMessage',pageSize:5,
+         pageList:[2,5,10]"
+         style="width: 88%">
+      <thead>
+          <tr>
+          <th data-options="field:'mno'" width=12%>
+            编号</th>
+              <th data-options="field:'mname'" width=43%>
+              名称</th>
+              <th data-options="field:'mmode'" swidth=2%>
+              服用方法</th>
+              <th data-options="field:'mefficacy'" width=42%>
+              功效</th>
+          </tr>
+      </thead>
+  </table>
+</div>
+<div id="medicinePrint">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-printer" plain="true" 
+        onclick="RMMPrint()">打印</a>
+</div>
+<script type="text/javascript">
+  function RMMPrint(){
+  $('#RMMPrint').jqprint();
+}
+</script>

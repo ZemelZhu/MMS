@@ -1,0 +1,154 @@
+<!-- /* 浏览顾客信息*/ -->
+     <table class="easyui-datagrid"  toolbar="#clienttoolbar"
+     rownumbers="true" fitColumns="true" singleSelect="true"
+     id="clientdatagrid" 
+         data-options="striped:true,
+         pagination:true,
+
+         url:'../Client/GetMessage',pageSize:5,
+         pageList:[2,5,10]"
+         style="width: 88%">
+      <thead>
+          <tr>
+            <th data-options="field:'cno'" width=9%>
+            编号</th>
+            <th data-options="field:'cname'" width=8%>
+            姓名</th>
+            <th data-options="field:'csex'" width=2%>
+            性别</th>
+             <th data-options="field:'cage'" width=3%>
+            年龄</th>
+            <!-- <th data-options="field:'caddress'" width=37%>
+            住址</th> -->
+            <th data-options="field:'cphone'" width=8%>
+            电话</th>
+           <!--  <th data-options="field:'csymptom'" width=21%>
+            症状</th> -->
+            <th data-options="field:'mno'" width=12%>
+            已购药品</th>
+            <th data-options="field:'ano'" width=8%>
+            经办人</th>
+            <th data-options="field:'cdate'" width=10%>
+            录入日期</th>
+            <th data-options="field:'caddress'" width=39%>
+            住址</th>
+           <!--  <th data-options="field:'cremark'" width=21%>
+            备注</th> -->
+            
+          </tr>
+      </thead>
+  </table>
+  <div id="clienttoolbar">
+        <a href="javascript:new2()" class="easyui-linkbutton" iconCls="icon-add" plain="true" 
+        >查看详情</a>
+    </div>
+
+<!-- 隐藏页面显示顾客详情 -->
+<div class="easyui-dialog" title="顾客信息" id="SCMBrowerdialog" closed="true"
+data-options="iconCls:'icon-user',modal:true,draggable:false"
+style="width:1600px;height:600px">
+     <div style="margin:30px 0px 0px 100px;font-size: 40px">
+      <div style="margin-bottom: 30px">
+        编号:<input id="SCMBrowercno" class="easyui-textbox"
+        style="width: 200px;height:40px"
+        data-options="disabled:true"></input>
+        &nbsp;&nbsp;
+        姓名:<input id="SCMBrowercname"
+        class="easyui-textbox"
+        style="width: 200px;height:40px"
+        data-options="disabled:true"></input>
+        &nbsp;&nbsp;
+        性别:<input id="SCMBrowercsex"
+        class="easyui-textbox"
+        style="width: 40px;height:40px"
+        data-options="disabled:true"></input>
+      </div>
+      <div style="margin-bottom: 20px">
+        年龄:<input id="SCMBrowercage"
+        class="easyui-textbox"
+        style="width: 200px;height:40px"
+        data-options="disabled:true"></input>
+        &nbsp;&nbsp;
+        电话:<input id="SCMBrowercphone"
+        class="easyui-textbox" 
+        style="width: 200px;height:40px"
+        data-options="disabled:true"></input>
+        &nbsp;&nbsp;
+        经办人:<input id="SCMBrowerano"
+        class="easyui-textbox"
+        style="width: 150px;height:40px"
+        data-options="disabled:true"></input>
+      </div>
+    <div style="margin-bottom: 20px">
+      录入日期:<input id="SCMBrowercdate"
+      class="easyui-textbox"
+      style="width: 150px;height:40px"
+      data-options="disabled:true"></input>
+      &nbsp;&nbsp;
+      已购药品:<input id="SCMBrowermno"
+      class="easyui-textbox" 
+      style="width: 150px;height:40px"
+      data-options="disabled:true"></input>
+    </div>
+    <div style="margin-bottom: 30px;">
+      住址:<input id="SCMBrowercaddress"
+      class="easyui-textbox" 
+      style="width: 1150px;height:40px"
+      data-options="disabled:true"></input></td>
+    </div>
+    <div style="margin-bottom: 30px;">
+      症状:<input 
+      id="SCMBrowercsymptom" multiline="true"
+      class="easyui-textbox" 
+      style="width: 500px;height:150px"
+      data-options="disabled:true" >
+      </input>&nbsp;
+      备注:<input id="SCMBrowercremark" multiline="true"
+      class="easyui-textbox" style="width: 500px;height:150px"
+      data-options="disabled:true" ></input>
+    </div>     
+  </div>
+</div>
+<script type="text/javascript">
+    function getClient(c){
+      
+          $.post("../Client/GetClient", {
+          cno:c
+        }, function(data) {
+          if (data == ''){
+            $.messager.alert('警告', '顾客编号无效');
+            return ;
+          }
+           $('#SCMBrowerdialog').dialog('open');
+          $("#SCMBrowercno").textbox('setValue', data.cno);
+          $("#SCMBrowercno").textbox('textbox').css("font-size", "18pt");
+          $("#SCMBrowercname").textbox('setValue', data.cname);
+          $("#SCMBrowercname").textbox('textbox').css("font-size", "18pt");
+          $("#SCMBrowercsex").textbox('setValue', data.csex);
+          $("#SCMBrowercsex").textbox('textbox').css("font-size", "18pt");
+          $("#SCMBrowercage").textbox('setValue', data.cage);
+          $("#SCMBrowercage").textbox('textbox').css("font-size", "18pt");
+          $("#SCMBrowercaddress").textbox('setValue', data.caddress);
+          $("#SCMBrowercaddress").textbox('textbox').css("font-size", "18pt");
+          $("#SCMBrowercphone").textbox('setValue', data.cphone);
+          $("#SCMBrowercphone").textbox('textbox').css("font-size", "18pt");
+          $("#SCMBrowercsymptom").textbox('setValue', data.csymptom);
+          $("#SCMBrowercsymptom").textbox('textbox').css("font-size", "18pt");
+          $("#SCMBrowermno").textbox('setValue', data.mno);
+          $("#SCMBrowermno").textbox('textbox').css("font-size", "18pt");
+          $("#SCMBrowerano").textbox('setValue', data.ano);
+          $("#SCMBrowerano").textbox('textbox').css("font-size", "18pt");
+          $("#SCMBrowercdate").textbox('setValue', data.cdate);
+          $("#SCMBrowercdate").textbox('textbox').css("font-size", "18pt");
+          $("#SCMBrowercremark").textbox('setValue', data.cremark);
+          $("#SCMBrowercremark").textbox('textbox').css("font-size", "18pt");
+          });
+    }
+    function new2(){
+     
+        var clientrow = $('#clientdatagrid').datagrid('getSelected');
+        
+         getClient(clientrow.cno);
+        
+}
+</script>

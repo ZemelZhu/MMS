@@ -1,0 +1,53 @@
+<!-- /* 报表顾客信息*/ -->
+<div id="RCMPrint" >
+     <table class="easyui-datagrid"  toolbar="#clientPrint"
+     title="顾客信息报表" nowrap="false"
+         data-options="striped:true,
+         pagination:true,fitColumns:true,
+         url:'../Client/GetMessage',pageSize:5,
+         pageList:[2,5,10]"
+         style="width: 88%">
+      <thead>
+          <tr>
+           <th data-options="field:'cno'" width=7%>
+            编号</th>
+            <th data-options="field:'cname'" width=6%>
+            姓名</th>
+            <th data-options="field:'csex'" width=2%>
+            性别</th>
+             <th data-options="field:'cage'" width=2%>
+            年龄</th>
+            <th data-options="field:'caddress'" width=20%>
+            住址</th>
+            <th data-options="field:'cphone'" width=7%>
+            电话</th>
+            <th data-options="field:'csymptom'" width=20%>
+            症状</th>
+            <th data-options="field:'mno'" width=6%>
+            已购药品</th>
+            <th data-options="field:'ano'" width=6%>
+            经办人</th>
+            <th data-options="field:'cdate'" width=5%>
+            录入日期</th>
+            <th data-options="field:'cremark'" width=20%>
+            备注</th>
+          </tr>
+      </thead>
+  </table>
+</div>
+<div id="clientPrint">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-printer" plain="true" 
+        onclick="RCMPrint()">打印部分信息</a>
+     
+</div>
+<script type="text/javascript">
+    // 打印部分
+function RCMPrint(){
+    $('#RCMPrint').jqprint();
+}
+// 打印全部
+// function RCMAllPrint(){
+//  $('#RCMPAllrint').show();
+//  $('#RCMPAllrint').jqprint();
+// }
+</script>

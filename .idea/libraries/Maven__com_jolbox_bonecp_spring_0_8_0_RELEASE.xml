@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.jolbox:bonecp-spring:0.8.0.RELEASE">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.m2/repository/com/jolbox/bonecp-spring/0.8.0.RELEASE/bonecp-spring-0.8.0.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.m2/repository/com/jolbox/bonecp-spring/0.8.0.RELEASE/bonecp-spring-0.8.0.RELEASE-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.m2/repository/com/jolbox/bonecp-spring/0.8.0.RELEASE/bonecp-spring-0.8.0.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
